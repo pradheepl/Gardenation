@@ -1,0 +1,66 @@
+﻿@model GardenationApp.Models.City
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>City</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpringFrostDateMod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpringFrostDateMod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FallFrostDateMod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FallFrostDateMod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeatherType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeatherType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialMessage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

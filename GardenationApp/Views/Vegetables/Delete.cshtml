@@ -1,0 +1,112 @@
+﻿@model GardenationApp.Models.Vegetable
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Vegetable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VegetableImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VegetableImagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterFrequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaterFrequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaterInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HarvestDateMod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HarvestDateMod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeedsPerSqFt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeedsPerSqFt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExtraSupportType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExtraSupportType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearlyHarvestAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearlyHarvestAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SowDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SowDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Garden.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Garden.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
