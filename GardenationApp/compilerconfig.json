@@ -2,5 +2,9 @@
   {
     "outputFile": "Template/grayscale.css",
     "inputFile": "Template/grayscale.less"
+  },
+  {
+    "outputFile": "Content/grayscale.css",
+    "inputFile": "Content/grayscale.less"
   }
 ]

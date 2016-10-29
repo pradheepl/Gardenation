@@ -243,6 +243,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\grayscale.css">
+      <DependentUpon>grayscale.less</DependentUpon>
+    </Content>
+    <Content Include="Content\grayscale.min.css">
+      <DependentUpon>grayscale.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -289,13 +295,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include=".gitignore" />
     <Content Include="Images\downloads-bg.jpg" />
-    <Content Include="Content\grayscale.css">
-      <DependentUpon>grayscale.less</DependentUpon>
-    </Content>
     <Content Include="Scripts\grayscale.js" />
-    <Content Include="Content\grayscale.min.css">
-      <DependentUpon>grayscale.css</DependentUpon>
-    </Content>
     <Content Include="Scripts\grayscale.min.js" />
     <Content Include="Scripts\gulpfile.js" />
     <Content Include="Template\index.html" />
