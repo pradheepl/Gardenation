@@ -1,4 +1,4 @@
-﻿@model GardenationApp.Models.Vegetable
+﻿@model GardenationApp.Models.VegetableType
 
 @{
     ViewBag.Title = "Delete";
@@ -8,47 +8,47 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Vegetable</h4>
+    <h4>VegetableType</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.LastWateredDate)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastWateredDate)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HarvestDate)
+            @Html.DisplayNameFor(model => model.WaterFrequency)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HarvestDate)
+            @Html.DisplayFor(model => model.WaterFrequency)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SowDate)
+            @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SowDate)
+            @Html.DisplayFor(model => model.ImagePath)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Garden.Name)
+            @Html.DisplayNameFor(model => model.EquipmentNeeded)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Garden.Name)
+            @Html.DisplayFor(model => model.EquipmentNeeded)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VegetableType.Name)
+            @Html.DisplayNameFor(model => model.HarvestDateMod)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VegetableType.Name)
+            @Html.DisplayFor(model => model.HarvestDateMod)
         </dd>
 
     </dl>

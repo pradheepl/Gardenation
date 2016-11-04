@@ -11,75 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.LastWateredDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.LastWateredDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
+            @Html.DisplayNameFor(model => model.HarvestDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VegetableImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VegetableImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WaterFrequency)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WaterFrequency)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WaterInstructions)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WaterInstructions)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HarvestDateMod)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HarvestDateMod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SeedsPerSqFt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SeedsPerSqFt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExtraSupportType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExtraSupportType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YearlyHarvestAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YearlyHarvestAmount)
+            @Html.DisplayFor(model => model.HarvestDate)
         </dd>
 
         <dt>
@@ -96,6 +40,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Garden.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VegetableType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VegetableType.Name)
         </dd>
 
     </dl>

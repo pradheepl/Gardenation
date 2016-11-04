@@ -43,6 +43,8 @@
     <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="GardenID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Garden" Relationship="GardenationModel.FK_PromptListItem_Garden" FromRole="PromptListItem" ToRole="Garden" />
+    <Property Name="PromptListTypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PromptListType" Relationship="GardenationModel.FK_PromptListItem_PromptListType" FromRole="PromptListItem" ToRole="PromptListType" />
   </EntityType>
   <EntityType Name="Vegetable">
     <Key>
@@ -58,9 +60,13 @@
     <Property Name="SeedsPerSqFt" Type="Int32" />
     <Property Name="ExtraSupportType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="YearlyHarvestAmount" Type="Int32" />
-    <Property Name="SowDate" Type="DateTime" Precision="0" />
+    <Property Name="SowDate" Type="DateTime" Precision="3" />
     <Property Name="GardenID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Garden" Relationship="GardenationModel.FK_Vegetable_Garden" FromRole="Vegetable" ToRole="Garden" />
+    <Property Name="LastWateredDate" Type="DateTime" Precision="3" />
+    <Property Name="HarvestDate" Type="DateTime" Precision="3" />
+    <Property Name="VegetableTypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VegetableType" Relationship="GardenationModel.FK_Vegetable_VegetableType" FromRole="Vegetable" ToRole="VegetableType" />
   </EntityType>
   <EntityContainer Name="GardenationDbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cities" EntityType="Self.City" />
@@ -78,6 +84,17 @@
     <AssociationSet Name="FK_Vegetable_Garden" Association="GardenationModel.FK_Vegetable_Garden">
       <End Role="Garden" EntitySet="Gardens" />
       <End Role="Vegetable" EntitySet="Vegetables" />
+    </AssociationSet>
+    <EntitySet Name="VegetableTypes" EntityType="GardenationModel.VegetableType" />
+    <EntitySet Name="GardenInfoTables" EntityType="GardenationModel.GardenInfoTable" />
+    <AssociationSet Name="FK_Vegetable_VegetableType" Association="GardenationModel.FK_Vegetable_VegetableType">
+      <End Role="VegetableType" EntitySet="VegetableTypes" />
+      <End Role="Vegetable" EntitySet="Vegetables" />
+    </AssociationSet>
+    <EntitySet Name="PromptListTypes" EntityType="GardenationModel.PromptListType" />
+    <AssociationSet Name="FK_PromptListItem_PromptListType" Association="GardenationModel.FK_PromptListItem_PromptListType">
+      <End Role="PromptListType" EntitySet="PromptListTypes" />
+      <End Role="PromptListItem" EntitySet="PromptListItems" />
     </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Garden_City">
@@ -113,6 +130,67 @@
       </Principal>
       <Dependent Role="Vegetable">
         <PropertyRef Name="GardenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VegetableType">
+    <Key>
+      <PropertyRef Name="VegetableTypeID" />
+    </Key>
+    <Property Name="VegetableTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WaterFrequency" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EquipmentNeeded" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HarvestDateMod" Type="Int32" />
+    <NavigationProperty Name="Vegetables" Relationship="GardenationModel.FK_Vegetable_VegetableType" FromRole="VegetableType" ToRole="Vegetable" />
+  </EntityType>
+  <EntityType Name="GardenInfoTable">
+    <Key>
+      <PropertyRef Name="VegetableInfoID" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="VegetableInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="VegetableImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WaterFrequency" Type="Int32" />
+    <Property Name="WaterInstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HarvestDateMod" Type="Int32" />
+    <Property Name="SeedsPerSqFt" Type="Int32" />
+    <Property Name="ExtraSupportType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Vegetable_VegetableType">
+    <End Type="GardenationModel.VegetableType" Role="VegetableType" Multiplicity="1" />
+    <End Type="GardenationModel.Vegetable" Role="Vegetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VegetableType">
+        <PropertyRef Name="VegetableTypeID" />
+      </Principal>
+      <Dependent Role="Vegetable">
+        <PropertyRef Name="VegetableTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PromptListType">
+    <Key>
+      <PropertyRef Name="PromptListTypeID" />
+    </Key>
+    <Property Name="PromptListTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ColorClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IconClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PromptListItems" Relationship="GardenationModel.FK_PromptListItem_PromptListType" FromRole="PromptListType" ToRole="PromptListItem" />
+  </EntityType>
+  <Association Name="FK_PromptListItem_PromptListType">
+    <End Type="GardenationModel.PromptListType" Role="PromptListType" Multiplicity="1" />
+    <End Type="GardenationModel.PromptListItem" Role="PromptListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PromptListType">
+        <PropertyRef Name="PromptListTypeID" />
+      </Principal>
+      <Dependent Role="PromptListItem">
+        <PropertyRef Name="PromptListTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

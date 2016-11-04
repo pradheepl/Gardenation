@@ -12,7 +12,7 @@ namespace GardenationApp.Controllers
 {
     public class CitiesController : Controller
     {
-        private GardenationDbEntities db = new GardenationDbEntities();
+        private GardenationDbEntities1 db = new GardenationDbEntities1();
 
         // GET: Cities
         public ActionResult Index()

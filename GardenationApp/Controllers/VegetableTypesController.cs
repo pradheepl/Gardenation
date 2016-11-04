@@ -10,112 +10,107 @@ using GardenationApp.Models;
 
 namespace GardenationApp.Controllers
 {
-    public class GardensController : Controller
+    public class VegetableTypesController : Controller
     {
         private GardenationDbEntities1 db = new GardenationDbEntities1();
 
-        // GET: Gardens
+        // GET: VegetableTypes
         public ActionResult Index()
         {
-            var gardens = db.Gardens.Include(g => g.City);
-            return View(gardens.ToList());
+            return View(db.VegetableTypes.ToList());
         }
 
-        // GET: Gardens/Details/5
+        // GET: VegetableTypes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garden garden = db.Gardens.Find(id);
-            if (garden == null)
+            VegetableType vegetableType = db.VegetableTypes.Find(id);
+            if (vegetableType == null)
             {
                 return HttpNotFound();
             }
-            return View(garden);
+            return View(vegetableType);
         }
 
-        // GET: Gardens/Create
+        // GET: VegetableTypes/Create
         public ActionResult Create()
         {
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
             return View();
         }
 
-        // POST: Gardens/Create
+        // POST: VegetableTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SpringFrostDate,FallFrostDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Create([Bind(Include = "VegetableTypeID,Name,WaterFrequency,ImagePath,EquipmentNeeded,HarvestDateMod")] VegetableType vegetableType)
         {
             if (ModelState.IsValid)
             {
-                db.Gardens.Add(garden);
+                db.VegetableTypes.Add(vegetableType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
-            return View(garden);
+            return View(vegetableType);
         }
 
-        // GET: Gardens/Edit/5
+        // GET: VegetableTypes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garden garden = db.Gardens.Find(id);
-            if (garden == null)
+            VegetableType vegetableType = db.VegetableTypes.Find(id);
+            if (vegetableType == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
-            return View(garden);
+            return View(vegetableType);
         }
 
-        // POST: Gardens/Edit/5
+        // POST: VegetableTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SpringFrostDate,FallFrostDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Edit([Bind(Include = "VegetableTypeID,Name,WaterFrequency,ImagePath,EquipmentNeeded,HarvestDateMod")] VegetableType vegetableType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(garden).State = EntityState.Modified;
+                db.Entry(vegetableType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
-            return View(garden);
+            return View(vegetableType);
         }
 
-        // GET: Gardens/Delete/5
+        // GET: VegetableTypes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garden garden = db.Gardens.Find(id);
-            if (garden == null)
+            VegetableType vegetableType = db.VegetableTypes.Find(id);
+            if (vegetableType == null)
             {
                 return HttpNotFound();
             }
-            return View(garden);
+            return View(vegetableType);
         }
 
-        // POST: Gardens/Delete/5
+        // POST: VegetableTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Garden garden = db.Gardens.Find(id);
-            db.Gardens.Remove(garden);
+            VegetableType vegetableType = db.VegetableTypes.Find(id);
+            db.VegetableTypes.Remove(vegetableType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

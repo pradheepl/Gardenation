@@ -15,13 +15,11 @@ namespace GardenationApp.Models
     public partial class PromptListItem
     {
         public int PromptListItemID { get; set; }
-        public string Title { get; set; }
-        public string Type { get; set; }
-        public string ImagePath { get; set; }
         public System.DateTime TriggerDate { get; set; }
-        public string Note { get; set; }
         public int GardenID { get; set; }
+        public int PromptListTypeID { get; set; }
     
         public virtual Garden Garden { get; set; }
+        public virtual PromptListType PromptListType { get; set; }
     }
 }

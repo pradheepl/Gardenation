@@ -12,12 +12,12 @@ namespace GardenationApp.Controllers
 {
     public class VegetablesController : Controller
     {
-        private GardenationDbEntities db = new GardenationDbEntities();
+        private GardenationDbEntities1 db = new GardenationDbEntities1();
 
         // GET: Vegetables
         public ActionResult Index()
         {
-            var vegetables = db.Vegetables.Include(v => v.Garden);
+            var vegetables = db.Vegetables.Include(v => v.Garden).Include(v => v.VegetableType);
             return View(vegetables.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace GardenationApp.Controllers
         public ActionResult Create()
         {
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name");
+            ViewBag.VegetableTypeID = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VegetableID,Name,ShortDescription,VegetableImagePath,WaterFrequency,WaterInstructions,HarvestDateMod,SeedsPerSqFt,ExtraSupportType,YearlyHarvestAmount,SowDate,GardenID")] Vegetable vegetable)
+        public ActionResult Create([Bind(Include = "VegetableID,LastWateredDate,HarvestDate,SowDate,GardenID,VegetableTypeID")] Vegetable vegetable)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace GardenationApp.Controllers
             }
 
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", vegetable.GardenID);
+            ViewBag.VegetableTypeID = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name", vegetable.VegetableTypeID);
             return View(vegetable);
         }
 
@@ -74,6 +76,7 @@ namespace GardenationApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", vegetable.GardenID);
+            ViewBag.VegetableTypeID = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name", vegetable.VegetableTypeID);
             return View(vegetable);
         }
 
@@ -82,7 +85,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VegetableID,Name,ShortDescription,VegetableImagePath,WaterFrequency,WaterInstructions,HarvestDateMod,SeedsPerSqFt,ExtraSupportType,YearlyHarvestAmount,SowDate,GardenID")] Vegetable vegetable)
+        public ActionResult Edit([Bind(Include = "VegetableID,LastWateredDate,HarvestDate,SowDate,GardenID,VegetableTypeID")] Vegetable vegetable)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace GardenationApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", vegetable.GardenID);
+            ViewBag.VegetableTypeID = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name", vegetable.VegetableTypeID);
             return View(vegetable);
         }
 

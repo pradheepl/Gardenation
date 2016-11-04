@@ -13,10 +13,10 @@ namespace GardenationApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GardenationDbEntities : DbContext
+    public partial class GardenationDbEntities1 : DbContext
     {
-        public GardenationDbEntities()
-            : base("name=GardenationDbEntities")
+        public GardenationDbEntities1()
+            : base("name=GardenationDbEntities1")
         {
         }
     
@@ -28,6 +28,8 @@ namespace GardenationApp.Models
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Garden> Gardens { get; set; }
         public virtual DbSet<PromptListItem> PromptListItems { get; set; }
+        public virtual DbSet<PromptListType> PromptListTypes { get; set; }
         public virtual DbSet<Vegetable> Vegetables { get; set; }
+        public virtual DbSet<VegetableType> VegetableTypes { get; set; }
     }
 }

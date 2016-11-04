@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GardenationModelStoreContainer" CdmEntityContainer="GardenationDbEntities">
+  <EntityContainerMapping StorageEntityContainer="GardenationDbModelStoreContainer" CdmEntityContainer="GardenationDbEntities1">
     <EntitySetMapping Name="Cities">
-      <EntityTypeMapping TypeName="GardenationModel.City">
+      <EntityTypeMapping TypeName="GardenationDbModel.City">
         <MappingFragment StoreEntitySet="City">
           <ScalarProperty Name="CityID" ColumnName="CityID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Gardens">
-      <EntityTypeMapping TypeName="GardenationModel.Garden">
+      <EntityTypeMapping TypeName="GardenationDbModel.Garden">
         <MappingFragment StoreEntitySet="Garden">
           <ScalarProperty Name="GardenID" ColumnName="GardenID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -29,46 +29,46 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PromptListItems">
-      <EntityTypeMapping TypeName="GardenationModel.PromptListItem">
+      <EntityTypeMapping TypeName="GardenationDbModel.PromptListItem">
         <MappingFragment StoreEntitySet="PromptListItem">
-          <ScalarProperty Name="PromptListTypeID" ColumnName="PromptListTypeID" />
           <ScalarProperty Name="PromptListItemID" ColumnName="PromptListItemID" />
           <ScalarProperty Name="TriggerDate" ColumnName="TriggerDate" />
           <ScalarProperty Name="GardenID" ColumnName="GardenID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Vegetables">
-      <EntityTypeMapping TypeName="GardenationModel.Vegetable">
-        <MappingFragment StoreEntitySet="Vegetable">
-          <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
-          <ScalarProperty Name="HarvestDate" ColumnName="HarvestDate" />
-          <ScalarProperty Name="LastWateredDate" ColumnName="LastWateredDate" />
-          <ScalarProperty Name="VegetableID" ColumnName="VegetableID" />
-          <ScalarProperty Name="SowDate" ColumnName="SowDate" />
-          <ScalarProperty Name="GardenID" ColumnName="GardenID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="VegetableTypes">
-      <EntityTypeMapping TypeName="GardenationModel.VegetableType">
-        <MappingFragment StoreEntitySet="VegetableType">
-          <ScalarProperty Name="HarvestDateMod" ColumnName="HarvestDateMod" />
-          <ScalarProperty Name="EquipmentNeeded" ColumnName="EquipmentNeeded" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="WaterFrequency" ColumnName="WaterFrequency" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
+          <ScalarProperty Name="PromptListTypeID" ColumnName="PromptListTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PromptListTypes">
-      <EntityTypeMapping TypeName="GardenationModel.PromptListType">
+      <EntityTypeMapping TypeName="GardenationDbModel.PromptListType">
         <MappingFragment StoreEntitySet="PromptListType">
-          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
-          <ScalarProperty Name="ColorClass" ColumnName="ColorClass" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PromptListTypeID" ColumnName="PromptListTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ColorClass" ColumnName="ColorClass" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vegetables">
+      <EntityTypeMapping TypeName="GardenationDbModel.Vegetable">
+        <MappingFragment StoreEntitySet="Vegetable">
+          <ScalarProperty Name="VegetableID" ColumnName="VegetableID" />
+          <ScalarProperty Name="WaterCountdown" ColumnName="WaterCountdown" />
+          <ScalarProperty Name="HarvestDate" ColumnName="HarvestDate" />
+          <ScalarProperty Name="SowDate" ColumnName="SowDate" />
+          <ScalarProperty Name="GardenID" ColumnName="GardenID" />
+          <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VegetableTypes">
+      <EntityTypeMapping TypeName="GardenationDbModel.VegetableType">
+        <MappingFragment StoreEntitySet="VegetableType">
+          <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="WaterFrequency" ColumnName="WaterFrequency" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="EquipmentNeeded" ColumnName="EquipmentNeeded" />
+          <ScalarProperty Name="HarvestDateMod" ColumnName="HarvestDateMod" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

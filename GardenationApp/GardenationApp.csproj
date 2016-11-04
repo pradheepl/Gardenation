@@ -203,39 +203,47 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PromptListItemsController.cs" />
+    <Compile Include="Controllers\PromptListTypesController.cs" />
     <Compile Include="Controllers\VegetablesController.cs" />
+    <Compile Include="Controllers\VegetableTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs">
-      <DependentUpon>GardenationModel.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Garden.cs">
-      <DependentUpon>GardenationModel.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GardenationModel.Context.cs">
+    <Compile Include="Models\Gardenationdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GardenationModel.Context.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GardenationModel.cs">
+    <Compile Include="Models\Gardenationdb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GardenationModel.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GardenationModel.Designer.cs">
+    <Compile Include="Models\Gardenationdb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GardenationModel.edmx</DependentUpon>
+      <DependentUpon>Gardenationdb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PromptListItem.cs">
-      <DependentUpon>GardenationModel.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PromptListType.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vegetable.cs">
-      <DependentUpon>GardenationModel.tt</DependentUpon>
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VegetableType.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -253,15 +261,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\GardenationModel.Context.tt">
+    <Content Include="Models\Gardenationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GardenationModel.edmx</DependentUpon>
-      <LastGenOutput>GardenationModel.Context.cs</LastGenOutput>
+      <DependentUpon>Gardenationdb.edmx</DependentUpon>
+      <LastGenOutput>Gardenationdb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\GardenationModel.tt">
+    <Content Include="Models\Gardenationdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GardenationModel.edmx</DependentUpon>
-      <LastGenOutput>GardenationModel.cs</LastGenOutput>
+      <DependentUpon>Gardenationdb.edmx</DependentUpon>
+      <LastGenOutput>Gardenationdb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -270,17 +278,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\GardenationModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GardenationModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GardenationModel.edmx.diagram">
-      <DependentUpon>GardenationModel.edmx</DependentUpon>
-    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <EntityDeploy Include="Models\Gardenationdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Gardenationdb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Gardenationdb.edmx.diagram">
+      <DependentUpon>Gardenationdb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -335,11 +343,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="LICENSE" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="Content\grayscale.less" />
+    <Content Include="Content\mixins.less" />
+    <Content Include="Content\variables.less" />
     <Content Include="Views\Gardens\Create.cshtml" />
     <Content Include="Views\Gardens\Delete.cshtml" />
     <Content Include="Views\Gardens\Details.cshtml" />
     <Content Include="Views\Gardens\Edit.cshtml" />
     <Content Include="Views\Gardens\Index.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Cities\Delete.cshtml" />
+    <Content Include="Views\Cities\Details.cshtml" />
+    <Content Include="Views\Cities\Edit.cshtml" />
+    <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Vegetables\Create.cshtml" />
     <Content Include="Views\Vegetables\Delete.cshtml" />
     <Content Include="Views\Vegetables\Details.cshtml" />
@@ -350,17 +369,16 @@
     <Content Include="Views\PromptListItems\Details.cshtml" />
     <Content Include="Views\PromptListItems\Edit.cshtml" />
     <Content Include="Views\PromptListItems\Index.cshtml" />
-    <Content Include="Views\Cities\Create.cshtml" />
-    <Content Include="Views\Cities\Delete.cshtml" />
-    <Content Include="Views\Cities\Details.cshtml" />
-    <Content Include="Views\Cities\Edit.cshtml" />
-    <Content Include="Views\Cities\Index.cshtml" />
-    <Content Include="LICENSE" />
-    <Content Include="package.json" />
-    <Content Include="README.md" />
-    <Content Include="Content\grayscale.less" />
-    <Content Include="Content\mixins.less" />
-    <Content Include="Content\variables.less" />
+    <Content Include="Views\VegetableTypes\Create.cshtml" />
+    <Content Include="Views\VegetableTypes\Delete.cshtml" />
+    <Content Include="Views\VegetableTypes\Details.cshtml" />
+    <Content Include="Views\VegetableTypes\Edit.cshtml" />
+    <Content Include="Views\VegetableTypes\Index.cshtml" />
+    <Content Include="Views\PromptListTypes\Create.cshtml" />
+    <Content Include="Views\PromptListTypes\Delete.cshtml" />
+    <Content Include="Views\PromptListTypes\Details.cshtml" />
+    <Content Include="Views\PromptListTypes\Edit.cshtml" />
+    <Content Include="Views\PromptListTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
