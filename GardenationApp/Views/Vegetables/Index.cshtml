@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastWateredDate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.HarvestDate)
         </th>
         <th>
@@ -31,9 +28,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastWateredDate)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.HarvestDate)
         </td>
