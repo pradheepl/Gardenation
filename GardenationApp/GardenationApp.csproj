@@ -361,6 +361,7 @@
     <Content Include="Content\grayscale.less" />
     <Content Include="Content\mixins.less" />
     <Content Include="Content\variables.less" />
+    <Content Include="Views\Home\Assembly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

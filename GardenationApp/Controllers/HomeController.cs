@@ -26,5 +26,11 @@ namespace GardenationApp.Controllers
 
             return View();
         }
+
+        public ActionResult Assembly()
+        {
+            return View();
+        }
     }
+
 }
