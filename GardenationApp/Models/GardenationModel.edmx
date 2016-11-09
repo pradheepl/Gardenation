@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GardenationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SpringFrostDateMod" Type="int" />
+          <Property Name="FallFrostDateMod" Type="int" />
+          <Property Name="WeatherType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpecialMessage" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Garden">
+          <Key>
+            <PropertyRef Name="GardenID" />
+          </Key>
+          <Property Name="GardenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="LastVisitedDate" Type="date" />
+          <Property Name="SpringFrostDate" Type="date" />
+          <Property Name="FallFrostDate" Type="date" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Length" Type="int" />
+          <Property Name="SqFeet" Type="int" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PromptListItem">
+          <Key>
+            <PropertyRef Name="PromptListItemID" />
+          </Key>
+          <Property Name="PromptListItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="TriggerDate" Type="date" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="1000" />
+          <Property Name="GardenID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vegetable">
+          <Key>
+            <PropertyRef Name="VegetableID" />
+          </Key>
+          <Property Name="VegetableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="VegetableImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="WaterFrequency" Type="int" />
+          <Property Name="WaterInstructions" Type="nvarchar" MaxLength="500" />
+          <Property Name="HarvestDateMod" Type="int" />
+          <Property Name="SeedsPerSqFt" Type="int" />
+          <Property Name="ExtraSupportType" Type="nvarchar" MaxLength="500" />
+          <Property Name="YearlyHarvestAmount" Type="int" />
+          <Property Name="SowDate" Type="date" />
+          <Property Name="GardenID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Garden_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Garden" Type="Self.Garden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Garden">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromptListItem_Garden">
+          <End Role="Garden" Type="Self.Garden" Multiplicity="1" />
+          <End Role="PromptListItem" Type="Self.PromptListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garden">
+              <PropertyRef Name="GardenID" />
+            </Principal>
+            <Dependent Role="PromptListItem">
+              <PropertyRef Name="GardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vegetable_Garden">
+          <End Role="Garden" Type="Self.Garden" Multiplicity="1" />
+          <End Role="Vegetable" Type="Self.Vegetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garden">
+              <PropertyRef Name="GardenID" />
+            </Principal>
+            <Dependent Role="Vegetable">
+              <PropertyRef Name="GardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GardenationModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Garden" EntityType="Self.Garden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PromptListItem" EntityType="Self.PromptListItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vegetable" EntityType="Self.Vegetable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Garden_City" Association="Self.FK_Garden_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Garden" EntitySet="Garden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromptListItem_Garden" Association="Self.FK_PromptListItem_Garden">
+            <End Role="Garden" EntitySet="Garden" />
+            <End Role="PromptListItem" EntitySet="PromptListItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vegetable_Garden" Association="Self.FK_Vegetable_Garden">
+            <End Role="Garden" EntitySet="Garden" />
+            <End Role="Vegetable" EntitySet="Vegetable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GardenationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpringFrostDateMod" Type="Int32" />
+          <Property Name="FallFrostDateMod" Type="Int32" />
+          <Property Name="WeatherType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gardens" Relationship="GardenationModel.FK_Garden_City" FromRole="City" ToRole="Garden" />
+        </EntityType>
+        <EntityType Name="Garden">
+          <Key>
+            <PropertyRef Name="GardenID" />
+          </Key>
+          <Property Name="GardenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="LastVisitedDate" Type="DateTime" Precision="0" />
+          <Property Name="SpringFrostDate" Type="DateTime" Precision="0" />
+          <Property Name="FallFrostDate" Type="DateTime" Precision="0" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Length" Type="Int32" />
+          <Property Name="SqFeet" Type="Int32" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="GardenationModel.FK_Garden_City" FromRole="Garden" ToRole="City" />
+          <NavigationProperty Name="PromptListItems" Relationship="GardenationModel.FK_PromptListItem_Garden" FromRole="Garden" ToRole="PromptListItem" />
+          <NavigationProperty Name="Vegetables" Relationship="GardenationModel.FK_Vegetable_Garden" FromRole="Garden" ToRole="Vegetable" />
+        </EntityType>
+        <EntityType Name="PromptListItem">
+          <Key>
+            <PropertyRef Name="PromptListItemID" />
+          </Key>
+          <Property Name="PromptListItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TriggerDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="GardenID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Garden" Relationship="GardenationModel.FK_PromptListItem_Garden" FromRole="PromptListItem" ToRole="Garden" />
+        </EntityType>
+        <EntityType Name="Vegetable">
+          <Key>
+            <PropertyRef Name="VegetableID" />
+          </Key>
+          <Property Name="VegetableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VegetableImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WaterFrequency" Type="Int32" />
+          <Property Name="WaterInstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HarvestDateMod" Type="Int32" />
+          <Property Name="SeedsPerSqFt" Type="Int32" />
+          <Property Name="ExtraSupportType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="YearlyHarvestAmount" Type="Int32" />
+          <Property Name="SowDate" Type="DateTime" Precision="0" />
+          <Property Name="GardenID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Garden" Relationship="GardenationModel.FK_Vegetable_Garden" FromRole="Vegetable" ToRole="Garden" />
+        </EntityType>
+        <EntityContainer Name="GardenationDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Gardens" EntityType="Self.Garden" />
+          <EntitySet Name="PromptListItems" EntityType="Self.PromptListItem" />
+          <EntitySet Name="Vegetables" EntityType="Self.Vegetable" />
+          <AssociationSet Name="FK_Garden_City" Association="GardenationModel.FK_Garden_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Garden" EntitySet="Gardens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromptListItem_Garden" Association="GardenationModel.FK_PromptListItem_Garden">
+            <End Role="Garden" EntitySet="Gardens" />
+            <End Role="PromptListItem" EntitySet="PromptListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vegetable_Garden" Association="GardenationModel.FK_Vegetable_Garden">
+            <End Role="Garden" EntitySet="Gardens" />
+            <End Role="Vegetable" EntitySet="Vegetables" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Garden_City">
+          <End Type="GardenationModel.City" Role="City" Multiplicity="1" />
+          <End Type="GardenationModel.Garden" Role="Garden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Garden">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromptListItem_Garden">
+          <End Type="GardenationModel.Garden" Role="Garden" Multiplicity="1" />
+          <End Type="GardenationModel.PromptListItem" Role="PromptListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garden">
+              <PropertyRef Name="GardenID" />
+            </Principal>
+            <Dependent Role="PromptListItem">
+              <PropertyRef Name="GardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vegetable_Garden">
+          <End Type="GardenationModel.Garden" Role="Garden" Multiplicity="1" />
+          <End Type="GardenationModel.Vegetable" Role="Vegetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garden">
+              <PropertyRef Name="GardenID" />
+            </Principal>
+            <Dependent Role="Vegetable">
+              <PropertyRef Name="GardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GardenationModelStoreContainer" CdmEntityContainer="GardenationDbEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="GardenationModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SpringFrostDateMod" ColumnName="SpringFrostDateMod" />
+                <ScalarProperty Name="FallFrostDateMod" ColumnName="FallFrostDateMod" />
+                <ScalarProperty Name="WeatherType" ColumnName="WeatherType" />
+                <ScalarProperty Name="SpecialMessage" ColumnName="SpecialMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gardens">
+            <EntityTypeMapping TypeName="GardenationModel.Garden">
+              <MappingFragment StoreEntitySet="Garden">
+                <ScalarProperty Name="GardenID" ColumnName="GardenID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastVisitedDate" ColumnName="LastVisitedDate" />
+                <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
+                <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="SqFeet" ColumnName="SqFeet" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromptListItems">
+            <EntityTypeMapping TypeName="GardenationModel.PromptListItem">
+              <MappingFragment StoreEntitySet="PromptListItem">
+                <ScalarProperty Name="PromptListItemID" ColumnName="PromptListItemID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="TriggerDate" ColumnName="TriggerDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="GardenID" ColumnName="GardenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vegetables">
+            <EntityTypeMapping TypeName="GardenationModel.Vegetable">
+              <MappingFragment StoreEntitySet="Vegetable">
+                <ScalarProperty Name="VegetableID" ColumnName="VegetableID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="VegetableImagePath" ColumnName="VegetableImagePath" />
+                <ScalarProperty Name="WaterFrequency" ColumnName="WaterFrequency" />
+                <ScalarProperty Name="WaterInstructions" ColumnName="WaterInstructions" />
+                <ScalarProperty Name="HarvestDateMod" ColumnName="HarvestDateMod" />
+                <ScalarProperty Name="SeedsPerSqFt" ColumnName="SeedsPerSqFt" />
+                <ScalarProperty Name="ExtraSupportType" ColumnName="ExtraSupportType" />
+                <ScalarProperty Name="YearlyHarvestAmount" ColumnName="YearlyHarvestAmount" />
+                <ScalarProperty Name="SowDate" ColumnName="SowDate" />
+                <ScalarProperty Name="GardenID" ColumnName="GardenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
