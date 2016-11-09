@@ -4,10 +4,68 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    .garden {
+        margin: 0 20%;
+        border: .3em solid tan;
+        /*Responsive squares with a responsive background image*/
+    }
+    .garden .sqft {
+        position: relative;
+        text-align: center;
+        padding: 23% 0;
+        border: .3em solid tan;
+        background-image: url('https://sftextures.com/texture/4071/0/4068/seamless-dark-stone-texture-background-black-shiny-rough-surface-mystical-bumpy-hard-ground-256x170.jpg');
+        background-size: cover;
+        z-index: -2;
+        /*the droplet signals which plants need watered*/
+    }
+    .garden .sqft .droplet-reference {
+        background-image: url("http://www.kharaghanihome.com/wp-content/uploads/2013/07/Drop.png");
+        z-index: 1;
+        font-size: 3em;
+        margin: auto;
+        padding-top: 35%;
+        overflow: hidden;
+        position: absolute;
+        top: 5%;
+        left: 10%;
+        right: 0;
+        bottom: 0;
+        background-size: 90%;
+        background-repeat: no-repeat;
+        opacity: .7;
+    }
+
+    .garden .Carrot {
+        background-image: url('../../Images/CarrotIcon.png');
+        position: absolute;
+        z-index: -1;
+        background-size: 90%;
+        background-repeat:no-repeat;
+        top: 5%;
+        left: 10%;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+</style>
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div class="row garden">
+    @foreach (var item in Model.Vegetables)
+    {
+        <div class="col-xs-6 bg-danger sqft veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
+    }
+
+</div>
+
+
 
 <div>
-    <h4>@Html.DisplayNameFor(model => model.Name)</h4>
+    <h4></h4>
 
 
     <dl class="dl-horizontal">

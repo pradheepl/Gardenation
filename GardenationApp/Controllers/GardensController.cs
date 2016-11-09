@@ -28,7 +28,15 @@ namespace GardenationApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            
             Garden garden = db.Gardens.Find(id);
+            ViewBag.Vegetable1 = "";
+            foreach(var item in garden.Vegetables)
+            {
+
+            }
+
             if (garden == null)
             {
                 return HttpNotFound();
@@ -54,7 +62,6 @@ namespace GardenationApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 db.Gardens.Add(garden);
                 garden.CreatedDate = DateTime.Now;
                 db.SaveChanges();
