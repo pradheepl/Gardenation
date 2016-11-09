@@ -25,6 +25,7 @@ namespace GardenationApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/grayscale.css",
                       "~/Content/site.css"));
         }
     }

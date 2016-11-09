@@ -15,18 +15,13 @@ namespace GardenationApp.Models
     public partial class Vegetable
     {
         public int VegetableID { get; set; }
-        public string Name { get; set; }
-        public string ShortDescription { get; set; }
-        public string VegetableImagePath { get; set; }
-        public Nullable<int> WaterFrequency { get; set; }
-        public string WaterInstructions { get; set; }
-        public Nullable<int> HarvestDateMod { get; set; }
-        public Nullable<int> SeedsPerSqFt { get; set; }
-        public string ExtraSupportType { get; set; }
-        public Nullable<int> YearlyHarvestAmount { get; set; }
+        public Nullable<int> WaterCountdown { get; set; }
+        public Nullable<System.DateTime> HarvestDate { get; set; }
         public Nullable<System.DateTime> SowDate { get; set; }
         public int GardenID { get; set; }
+        public int VegetableTypeID { get; set; }
     
         public virtual Garden Garden { get; set; }
+        public virtual VegetableType VegetableType { get; set; }
     }
 }

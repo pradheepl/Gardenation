@@ -12,27 +12,21 @@ namespace GardenationApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Garden
+    public partial class VegetableType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Garden()
+        public VegetableType()
         {
-            this.PromptListItems = new HashSet<PromptListItem>();
             this.Vegetables = new HashSet<Vegetable>();
         }
     
-        public int GardenID { get; set; }
+        public int VegetableTypeID { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> LastVisitedDate { get; set; }
-        public Nullable<System.DateTime> SpringFrostDate { get; set; }
-        public Nullable<System.DateTime> FallFrostDate { get; set; }
-        public Nullable<int> SqFeet { get; set; }
-        public int CityID { get; set; }
+        public Nullable<int> WaterFrequency { get; set; }
+        public string ImagePath { get; set; }
+        public string EquipmentNeeded { get; set; }
+        public Nullable<int> HarvestDateMod { get; set; }
     
-        public virtual City City { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PromptListItem> PromptListItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vegetable> Vegetables { get; set; }
     }

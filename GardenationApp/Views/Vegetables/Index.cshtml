@@ -12,31 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VegetableImagePath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WaterFrequency)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WaterInstructions)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HarvestDateMod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SeedsPerSqFt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExtraSupportType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearlyHarvestAmount)
+            @Html.DisplayNameFor(model => model.HarvestDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SowDate)
@@ -44,43 +20,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Garden.Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VegetableType.Name)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VegetableImagePath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WaterFrequency)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WaterInstructions)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HarvestDateMod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SeedsPerSqFt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExtraSupportType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearlyHarvestAmount)
+            @Html.DisplayFor(modelItem => item.HarvestDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SowDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Garden.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VegetableType.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VegetableID }) |

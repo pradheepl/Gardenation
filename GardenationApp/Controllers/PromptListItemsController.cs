@@ -12,12 +12,12 @@ namespace GardenationApp.Controllers
 {
     public class PromptListItemsController : Controller
     {
-        private GardenationDbEntities db = new GardenationDbEntities();
+        private GardenationDbEntities1 db = new GardenationDbEntities1();
 
         // GET: PromptListItems
         public ActionResult Index()
         {
-            var promptListItems = db.PromptListItems.Include(p => p.Garden);
+            var promptListItems = db.PromptListItems.Include(p => p.Garden).Include(p => p.PromptListType);
             return View(promptListItems.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace GardenationApp.Controllers
         public ActionResult Create()
         {
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name");
+            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PromptListItemID,Title,Type,ImagePath,TriggerDate,Note,GardenID")] PromptListItem promptListItem)
+        public ActionResult Create([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID")] PromptListItem promptListItem)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace GardenationApp.Controllers
             }
 
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
+            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
             return View(promptListItem);
         }
 
@@ -74,6 +76,7 @@ namespace GardenationApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
+            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
             return View(promptListItem);
         }
 
@@ -82,7 +85,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PromptListItemID,Title,Type,ImagePath,TriggerDate,Note,GardenID")] PromptListItem promptListItem)
+        public ActionResult Edit([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID")] PromptListItem promptListItem)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace GardenationApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
+            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
             return View(promptListItem);
         }
 
