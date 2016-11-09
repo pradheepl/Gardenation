@@ -25,8 +25,6 @@ namespace GardenationApp.Models
         public string Name { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> LastVisitedDate { get; set; }
-        public Nullable<System.DateTime> SpringFrostDate { get; set; }
-        public Nullable<System.DateTime> FallFrostDate { get; set; }
         public Nullable<int> SqFeet { get; set; }
         public int CityID { get; set; }
     

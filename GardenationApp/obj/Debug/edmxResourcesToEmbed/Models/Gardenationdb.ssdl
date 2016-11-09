@@ -7,8 +7,8 @@
     <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="SpringFrostDateMod" Type="int" />
-    <Property Name="FallFrostDateMod" Type="int" />
+    <Property Name="SpringFrostDate" Type="datetime" />
+    <Property Name="FallFrostDate" Type="datetime" />
     <Property Name="WeatherType" Type="nvarchar" MaxLength="50" />
     <Property Name="SpecialMessage" Type="nvarchar" MaxLength="500" />
   </EntityType>
@@ -20,8 +20,6 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="date" />
     <Property Name="LastVisitedDate" Type="date" />
-    <Property Name="SpringFrostDate" Type="date" />
-    <Property Name="FallFrostDate" Type="date" />
     <Property Name="SqFeet" Type="int" />
     <Property Name="CityID" Type="int" Nullable="false" />
   </EntityType>

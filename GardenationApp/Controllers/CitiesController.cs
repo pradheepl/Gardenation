@@ -46,7 +46,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CityID,Name,State,SpringFrostDateMod,FallFrostDateMod,WeatherType,SpecialMessage")] City city)
+        public ActionResult Create([Bind(Include = "CityID,Name,State,WeatherType,SpecialMessage,SpringFrostDate,FallFrostDate")] City city)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CityID,Name,State,SpringFrostDateMod,FallFrostDateMod,WeatherType,SpecialMessage")] City city)
+        public ActionResult Edit([Bind(Include = "CityID,Name,State,WeatherType,SpecialMessage,SpringFrostDate,FallFrostDate")] City city)
         {
             if (ModelState.IsValid)
             {

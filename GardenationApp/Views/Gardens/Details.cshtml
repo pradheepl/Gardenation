@@ -7,24 +7,18 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Garden</h4>
-    <hr />
+    <h4>@Html.DisplayNameFor(model => model.Name)</h4>
+
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.LastVisitedDate)
@@ -32,22 +26,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.LastVisitedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SpringFrostDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SpringFrostDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FallFrostDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FallFrostDate)
         </dd>
 
         <dt>

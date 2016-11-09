@@ -40,6 +40,8 @@ namespace GardenationApp.Controllers
         public ActionResult Create()
         {
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
+            //get select list with name of all vegetable types
+            ViewBag.VegetableTypes = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
             return View();
         }
 
@@ -48,11 +50,13 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SpringFrostDate,FallFrostDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Create([Bind(Include = "GardenID,LastVisitedDate,Name,SqFeet,CityID")] Garden garden)
         {
             if (ModelState.IsValid)
             {
+                
                 db.Gardens.Add(garden);
+                garden.CreatedDate = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,7 +86,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SpringFrostDate,FallFrostDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Edit([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SqFeet,CityID")] Garden garden)
         {
             if (ModelState.IsValid)
             {

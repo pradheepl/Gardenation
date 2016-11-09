@@ -23,10 +23,10 @@ namespace GardenationApp.Models
         public int CityID { get; set; }
         public string Name { get; set; }
         public string State { get; set; }
-        public Nullable<int> SpringFrostDateMod { get; set; }
-        public Nullable<int> FallFrostDateMod { get; set; }
         public string WeatherType { get; set; }
         public string SpecialMessage { get; set; }
+        public Nullable<System.DateTime> SpringFrostDate { get; set; }
+        public Nullable<System.DateTime> FallFrostDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Garden> Gardens { get; set; }

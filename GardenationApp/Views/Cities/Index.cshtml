@@ -18,16 +18,16 @@
             @Html.DisplayNameFor(model => model.State)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SpringFrostDateMod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FallFrostDateMod)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.WeatherType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SpecialMessage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpringFrostDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FallFrostDate)
         </th>
         <th></th>
     </tr>
@@ -41,16 +41,16 @@
             @Html.DisplayFor(modelItem => item.State)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SpringFrostDateMod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FallFrostDateMod)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.WeatherType)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SpecialMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpringFrostDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FallFrostDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CityID }) |

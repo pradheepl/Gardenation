@@ -4,11 +4,11 @@
     <EntitySetMapping Name="Cities">
       <EntityTypeMapping TypeName="GardenationDbModel.City">
         <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
+          <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
           <ScalarProperty Name="CityID" ColumnName="CityID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="SpringFrostDateMod" ColumnName="SpringFrostDateMod" />
-          <ScalarProperty Name="FallFrostDateMod" ColumnName="FallFrostDateMod" />
           <ScalarProperty Name="WeatherType" ColumnName="WeatherType" />
           <ScalarProperty Name="SpecialMessage" ColumnName="SpecialMessage" />
         </MappingFragment>
@@ -21,8 +21,6 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="LastVisitedDate" ColumnName="LastVisitedDate" />
-          <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
-          <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
           <ScalarProperty Name="SqFeet" ColumnName="SqFeet" />
           <ScalarProperty Name="CityID" ColumnName="CityID" />
         </MappingFragment>

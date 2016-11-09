@@ -12,8 +12,8 @@
           <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SpringFrostDateMod" Type="int" />
-          <Property Name="FallFrostDateMod" Type="int" />
+          <Property Name="SpringFrostDate" Type="datetime" />
+          <Property Name="FallFrostDate" Type="datetime" />
           <Property Name="WeatherType" Type="nvarchar" MaxLength="50" />
           <Property Name="SpecialMessage" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -25,8 +25,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="LastVisitedDate" Type="date" />
-          <Property Name="SpringFrostDate" Type="date" />
-          <Property Name="FallFrostDate" Type="date" />
           <Property Name="SqFeet" Type="int" />
           <Property Name="CityID" Type="int" Nullable="false" />
         </EntityType>
@@ -169,11 +167,11 @@
           <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SpringFrostDateMod" Type="Int32" />
-          <Property Name="FallFrostDateMod" Type="Int32" />
           <Property Name="WeatherType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SpecialMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gardens" Relationship="Self.FK_Garden_City" FromRole="City" ToRole="Garden" />
+          <Property Name="SpringFrostDate" Type="DateTime" Precision="3" />
+          <Property Name="FallFrostDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Garden">
           <Key>
@@ -183,8 +181,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="LastVisitedDate" Type="DateTime" Precision="0" />
-          <Property Name="SpringFrostDate" Type="DateTime" Precision="0" />
-          <Property Name="FallFrostDate" Type="DateTime" Precision="0" />
           <Property Name="SqFeet" Type="Int32" />
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="Self.FK_Garden_City" FromRole="Garden" ToRole="City" />
@@ -334,11 +330,11 @@
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="GardenationDbModel.City">
               <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
+                <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="SpringFrostDateMod" ColumnName="SpringFrostDateMod" />
-                <ScalarProperty Name="FallFrostDateMod" ColumnName="FallFrostDateMod" />
                 <ScalarProperty Name="WeatherType" ColumnName="WeatherType" />
                 <ScalarProperty Name="SpecialMessage" ColumnName="SpecialMessage" />
               </MappingFragment>
@@ -351,8 +347,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="LastVisitedDate" ColumnName="LastVisitedDate" />
-                <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
-                <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
                 <ScalarProperty Name="SqFeet" ColumnName="SqFeet" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>

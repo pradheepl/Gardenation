@@ -288,6 +288,7 @@
     </EntityDeploy>
     <Content Include="Models\Gardenationdb.edmx.diagram">
       <DependentUpon>Gardenationdb.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -309,7 +310,9 @@
     <Content Include="Template\index.html" />
     <Content Include="Images\intro-bg.jpg" />
     <Content Include="Images\map-marker.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -354,11 +357,6 @@
     <Content Include="Views\Gardens\Details.cshtml" />
     <Content Include="Views\Gardens\Edit.cshtml" />
     <Content Include="Views\Gardens\Index.cshtml" />
-    <Content Include="Views\Cities\Create.cshtml" />
-    <Content Include="Views\Cities\Delete.cshtml" />
-    <Content Include="Views\Cities\Details.cshtml" />
-    <Content Include="Views\Cities\Edit.cshtml" />
-    <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Vegetables\Create.cshtml" />
     <Content Include="Views\Vegetables\Delete.cshtml" />
     <Content Include="Views\Vegetables\Details.cshtml" />
@@ -379,6 +377,11 @@
     <Content Include="Views\PromptListTypes\Details.cshtml" />
     <Content Include="Views\PromptListTypes\Edit.cshtml" />
     <Content Include="Views\PromptListTypes\Index.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Cities\Delete.cshtml" />
+    <Content Include="Views\Cities\Details.cshtml" />
+    <Content Include="Views\Cities\Edit.cshtml" />
+    <Content Include="Views\Cities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

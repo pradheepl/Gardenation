@@ -7,11 +7,11 @@
     <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SpringFrostDateMod" Type="Int32" />
-    <Property Name="FallFrostDateMod" Type="Int32" />
     <Property Name="WeatherType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SpecialMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Gardens" Relationship="Self.FK_Garden_City" FromRole="City" ToRole="Garden" />
+    <Property Name="SpringFrostDate" Type="DateTime" Precision="3" />
+    <Property Name="FallFrostDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Garden">
     <Key>
@@ -21,8 +21,6 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="LastVisitedDate" Type="DateTime" Precision="0" />
-    <Property Name="SpringFrostDate" Type="DateTime" Precision="0" />
-    <Property Name="FallFrostDate" Type="DateTime" Precision="0" />
     <Property Name="SqFeet" Type="Int32" />
     <Property Name="CityID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="City" Relationship="Self.FK_Garden_City" FromRole="Garden" ToRole="City" />
