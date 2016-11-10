@@ -372,6 +372,7 @@
     <Content Include="Views\PromptListItems\Details.cshtml" />
     <Content Include="Views\PromptListItems\Edit.cshtml" />
     <Content Include="Views\PromptListItems\Index.cshtml" />
+    <Content Include="Views\Home\Assembly.cshtml" />
     <Content Include="Views\VegetableTypes\Create.cshtml" />
     <Content Include="Views\VegetableTypes\Delete.cshtml" />
     <Content Include="Views\VegetableTypes\Details.cshtml" />
