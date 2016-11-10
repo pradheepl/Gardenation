@@ -7,16 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Another Vegetable", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.HarvestDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SowDate)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Garden.Name)
         </th>
@@ -28,12 +22,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HarvestDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SowDate)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Garden.Name)
         </td>

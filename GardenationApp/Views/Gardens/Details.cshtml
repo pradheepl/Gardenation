@@ -5,86 +5,7 @@
 }
 
 <style>
-    .garden {
-        margin: 0 20%;
-        border: .3em solid tan;
-        /*Responsive squares with a responsive background image*/
-    }
-    .garden .sqft {
-        position: relative;
-        text-align: center;
-        padding: 23% 0;
-        border: .3em solid tan;
-        background-image: url('https://sftextures.com/texture/4071/0/4068/seamless-dark-stone-texture-background-black-shiny-rough-surface-mystical-bumpy-hard-ground-256x170.jpg');
-        background-size: cover;
-        z-index: -2;
-        /*the droplet signals which plants need watered*/
-    }
-    .garden .sqft .droplet-reference {
-        background-image: url("http://www.kharaghanihome.com/wp-content/uploads/2013/07/Drop.png");
-        z-index: 1;
-        font-size: 3em;
-        margin: auto;
-        padding-top: 35%;
-        overflow: hidden;
-        position: absolute;
-        top: 5%;
-        left: 10%;
-        right: 0;
-        bottom: 0;
-        background-size: 90%;
-        background-repeat: no-repeat;
-        opacity: .7;
-    }
-
-    .garden .Carrot {
-        background-image: url('../../Images/CarrotIcon.png');
-        position: absolute;
-        z-index: -1;
-        background-size: 90%;
-        background-repeat:no-repeat;
-        top: 5%;
-        left: 10%;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-    }
-    .garden .Lettuce {
-        background-image: url('../../Images/LettuceIcon.png');
-        position: absolute;
-        z-index: -1;
-        background-size: 90%;
-        background-repeat: no-repeat;
-        top: 5%;
-        left: 10%;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-    }
-    .garden .Onion {
-        background-image: url('../../Images/OnionIcon.png');
-        position: absolute;
-        z-index: -1;
-        background-size: 80%;
-        background-repeat:no-repeat;
-        top: 0;
-        left: 10%;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-    }
-    .garden .Tomato {
-        background-image: url('../../Images/TomatoIcon.png');
-        position: absolute;
-        z-index: -1;
-        background-size: 70%;
-        background-repeat: no-repeat;
-        top: 0;
-        left: 10%;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-    }
+    
 
 </style>
 
@@ -95,8 +16,12 @@
     {
         <div class="col-xs-6 bg-danger sqft veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
     }
-
 </div>
+
+@for (var i = 0; i < 10; i++)
+{
+    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your garden</div>
+}
 
 
 
@@ -144,3 +69,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.GardenID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script src="~/Scripts/GardenScript.js"></script>

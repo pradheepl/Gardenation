@@ -34,7 +34,7 @@ p {
   }
 }
 a {
-  color: #42DCA3;
+  color: #ed9121;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -52,10 +52,10 @@ a:focus {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: black;
+  background-color: #ed9121;
 }
 .navbar-custom .navbar-toggle {
-  color: white;
+  color: #ed9121;
   background-color: rgba(255, 255, 255, 0.2);
   font-size: 12px;
 }
@@ -70,7 +70,7 @@ a:focus {
   outline: none;
 }
 .navbar-custom a {
-  color: white;
+  color: black;
 }
 .navbar-custom .nav li a {
   -webkit-transition: background 0.3s ease-in-out;
@@ -92,9 +92,6 @@ a:focus {
 }
 .navbar-custom .nav li.active a {
   background-color: rgba(255, 255, 255, 0.3);
-}
-.navbar-custom .nav li.active a:hover {
-  color: white;
 }
 @media (min-width: 768px) {
   .navbar-custom {

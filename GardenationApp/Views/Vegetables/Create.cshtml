@@ -4,41 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
+<h2>Add Vegetables to Your Garden</h2>
+<h3>Or go @Html.ActionLink("back to Your garden", "Index", "Gardens");</h3>
 
 @using (Html.BeginForm()) 
+
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Vegetable</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.WaterCountdown, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.WaterCountdown, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WaterCountdown, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HarvestDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HarvestDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HarvestDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SowDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SowDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SowDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+    <div>
         <div class="form-group">
             @Html.LabelFor(model => model.GardenID, "GardenID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -57,7 +31,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add this vegetable" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -65,7 +65,7 @@ namespace GardenationApp.Controllers
                 db.Gardens.Add(garden);
                 garden.CreatedDate = DateTime.Now;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Vegetables");
             }
 
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
