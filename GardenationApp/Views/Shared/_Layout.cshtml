@@ -11,8 +11,7 @@
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <!-- Theme CSS -->
-    <link href="~/Content/grayscale.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,11 +40,12 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        @Html.ActionLink("Create a Garden", "Create", "Gardens")
+                        @Html.ActionLink("My Gardens", "Index", "Gardens")
                     </li>
-                    <li>
+                        @*Since there are no User Accounts right now, this li is commented out*@
+                       @*<li>
                         @Html.Partial("_LoginPartial")
-                    </li>
+                    </li>*@
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

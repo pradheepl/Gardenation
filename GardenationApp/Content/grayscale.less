@@ -2,13 +2,17 @@
 @import "mixins.less";
 
 @carrot-orange: #ed9121;
+@garden-green: #8fdd2c;
+@soil-brown: #654321;
+@light-green: white;
+@brand-font: 'Love Ya Like A Sister', cursive;
 
 body {
     width: 100%;
     height: 100%;
     font-family: "Lora","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: black;
-    background-color: white;
+    color: @soil-brown;
+    background-color: @light-green;
 }
 
 html {
@@ -22,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 35px;
+    margin: 0 0 .5em 0;
     text-transform: uppercase;
     font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
@@ -63,8 +67,8 @@ a {
     font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: @carrot-orange;
     .navbar-toggle {
-        color: @carrot-orange;
-        background-color: fade(white, 20%);
+        color: white;
+        background-color: fade(@carrot-orange, 20%);
         font-size: 12px;
         &:focus,
         &:active {
@@ -73,12 +77,14 @@ a {
     }
     .navbar-brand {
         font-weight: 700;
+        font-family: @brand-font;
+        font-size:4em;
         &:focus {
             outline: none;
         }
     }
     a {
-        color: black;
+        color: @soil-brown;
     }
     .nav {
         li {
@@ -87,7 +93,7 @@ a {
                 -moz-transition: background .3s ease-in-out;
                 transition: background .3s ease-in-out;
                 &:hover {
-                    color: fade(white, 80%);
+                    color: fade(@soil-brown, 80%);
                     outline: none;
                     background-color: transparent;
                 }
@@ -118,22 +124,20 @@ a {
         transition: background .5s ease-in-out,padding .5s ease-in-out;
         &.top-nav-collapse {
             padding: 0;
-            background: black;
+            background: @garden-green;
             border-bottom: 1px solid fade(white, 30%);
+            color:white;
         }
     }
 }
 
 .intro {
-    display: table;
     width: 100%;
     height: auto;
     padding: 100px 0;
     text-align: center;
-    color: white;
-    background: url(../Images/intro-bg.jpg) no-repeat bottom center scroll;
-
-    background-color: black;
+    color: @soil-brown;
+    background-repeat:no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -143,6 +147,7 @@ a {
         vertical-align: middle;
         .brand-heading {
             font-size: 40px;
+            font-family: @brand-font;
         }
         .intro-text {
             font-size: 18px;
@@ -283,15 +288,15 @@ a {
 }
 
 .btn-default {
-    border: 1px solid @primary;
-    color: @primary;
+    border: 1px solid @garden-green;
+    color: black;
     background-color: transparent;
     &:hover,
     &:focus {
-        border: 1px solid @primary;
+        border: 1px solid @garden-green;
         outline: none;
         color: black;
-        background-color: @primary;
+        background-color: @garden-green;
     }
 }
 

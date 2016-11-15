@@ -4,64 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    @Html.ActionLink("Create New Garden", "Create")
-</p>
+<h2>
+    @Html.ActionLink("Create New Garden", "Create", null, new { @class = "btn btn-default" })
+</h2>
 
 <div class="row">
-    <div class="col-xs-6 col-md-offset-4">
+    @*For each garden in the gardens model, show the name as a link to details with a list of information underneath*@
         @foreach (var item in Model)
         {
-            <div>
-        <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)"><h2>@Html.DisplayFor(modelItem => item.Name)</h2></a>
-                <p>@Html.DisplayFor(modelItem => item.SqFeet)Sq/ft</p>
+            <div class=" col-xs-12 col-md-6">
+                <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)"><h2>@Html.DisplayFor(modelItem => item.Name)</h2></a>
+                <ul class="garden-list">
+                    <li>Size: @Html.DisplayFor(modelItem => item.SqFeet)Sq/ft</li>
+                    <li>Created: @Html.DisplayFor(modelItem => item.CreatedDate)</li>
+                    <li>Last Visit: @Html.DisplayFor(modelItem => item.LastVisitedDate)</li>
+                    <li>City: @Html.DisplayFor(modelItem => item.City.Name)</li>
+                    <li>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GardenID }, new { @class = "btn btn-default" })
+                    </li>
+                </ul>
             </div>
-
         }
-    </div>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastVisitedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SqFeet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City.Name)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-            {
-        <tr>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastVisitedDate)
-            </td>
-            <td>
-                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GardenID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.GardenID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GardenID })
-            </td>
-        </tr>
-    }
-
-</table>

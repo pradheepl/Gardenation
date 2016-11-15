@@ -261,8 +261,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Carrot-PNG-Pic.png" />
     <Content Include="Images\CarrotIcon.png" />
+    <Content Include="Images\GardenSoil.jpg" />
     <Content Include="Images\OnionIcon.png" />
+    <Content Include="Images\Tomatobg.jpg" />
     <Content Include="Images\TomatoIcon.png" />
     <Content Include="Images\LettuceIcon.png" />
     <Content Include="Models\Gardenationdb.Context.tt">

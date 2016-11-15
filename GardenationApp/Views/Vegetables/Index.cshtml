@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add Another Vegetable", "Create")
+    @Html.ActionLink("Add Another Vegetable", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Back to my Garden", "Index", "Gardens", null, new { @class = "btn btn-default" })
 </p>
 <table class="table">
     <tr>

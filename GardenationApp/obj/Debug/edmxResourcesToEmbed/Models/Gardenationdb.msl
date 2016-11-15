@@ -17,6 +17,8 @@
     <EntitySetMapping Name="Gardens">
       <EntityTypeMapping TypeName="GardenationDbModel.Garden">
         <MappingFragment StoreEntitySet="Garden">
+          <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
+          <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
           <ScalarProperty Name="GardenID" ColumnName="GardenID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
