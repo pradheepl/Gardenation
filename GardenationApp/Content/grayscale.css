@@ -42,7 +42,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #1d9b6c;
+  color: #181008;
 }
 .light {
   font-weight: 400;
@@ -125,12 +125,14 @@ a:focus {
   -o-background-size: cover;
 }
 .intro .intro-body {
-  display: table-cell;
   vertical-align: middle;
 }
 .intro .intro-body .brand-heading {
-  font-size: 40px;
+  font-size: 70px;
   font-family: 'Love Ya Like A Sister', cursive;
+}
+.intro .intro-body .img {
+  margin: 0 auto;
 }
 .intro .intro-body .intro-text {
   font-size: 18px;
