@@ -34,7 +34,7 @@ namespace GardenationApp.Controllers
             ViewBag.Vegetable1 = "";
             foreach(var item in garden.Vegetables)
             {
-
+                
             }
 
             if (garden == null)
