@@ -148,7 +148,7 @@ a {
             font-size: 70px;
             font-family: @brand-font;
         }
-        .img{
+        img{
             margin:0 auto;
         }
         .intro-text {
@@ -177,7 +177,7 @@ a {
     border: 2px solid white;
     border-radius: 100% !important;
     font-size: 40px;
-    color: white;
+    color: @soil-brown;
     background: transparent;
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
@@ -185,7 +185,7 @@ a {
     &:hover,
     &:focus {
         outline: none;
-        color: white;
+        color: @soil-brown;
         background: fade(white, 10%);
     }
     i.animated {
@@ -250,19 +250,8 @@ a {
     width: 100%;
     padding: 50px 0;
     color: white;
-    background: url(../Images/downloads-bg.jpg) no-repeat center center scroll;
-    background-color: black;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
 }
 
-#map {
-    width: 100%;
-    height: 200px;
-    margin-top: 100px;
-}
 
 @media(min-width:767px) {
     .content-section {
@@ -273,10 +262,6 @@ a {
         padding: 100px 0;
     }
 
-    #map {
-        height: 400px;
-        margin-top: 250px;
-    }
 }
 
 .btn {

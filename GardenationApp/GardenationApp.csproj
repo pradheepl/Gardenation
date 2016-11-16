@@ -261,8 +261,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Carrot-PNG-Pic.png" />
     <Content Include="Images\CarrotIcon.png" />
+    <Content Include="Images\fresh_vegetable_row.jpg" />
     <Content Include="Images\GardenSoil.jpg" />
     <Content Include="Images\OnionIcon.png" />
     <Content Include="Images\TomatoIcon.png" />

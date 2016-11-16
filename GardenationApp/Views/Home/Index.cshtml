@@ -11,13 +11,14 @@
                 <div class="row">
                     <div class="col-xs-12 col-lg-8 col-lg-offset-2">
                         <h1 class="brand-heading">Gardenation</h1>
-                        <img class="img-responsive" src="~/Images/Carrot-PNG-Pic.png"/>
-                        <p class="intro-text">Grow food in Ohio easily and affordably with no experience.</p>
-                        <div>
-                            <h2 class="container" id="tutorial">
-                                <iframe width="560" height="315" src="https://www.youtube.com/watch?v=nJdLVua5z8E" frameborder="0" allowfullscreen></iframe>
-                            </h2>
+                        <div class="container" id="tutorial">
+                            <iframe width="560" height="315" src="https://www.youtube.com/watch?v=Y9U0pnt_C18" frameborder="0" allowfullscreen></iframe>
                         </div>
+                        <p class="intro-text">Grow food in Ohio easily and affordably with no experience.</p>
+                        <div class="container" id="tutorial">
+                            <iframe width="560" height="315" src="https://www.youtube.com/watch?v=Y9U0pnt_C18" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p><img class="img-responsive" src="~/Images/fresh_vegetable_row.jpg" /></p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -43,7 +44,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Let's Get Started</h2>
                     <p>Create an account and let's start building your personal garden now!</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Create an Account</a>
+                    @Html.ActionLink("Let's Get Started!", "Create", "Gardens", null, new { @class="btn btn-default btn-lg"})
                 </div>
             </div>
         </div>
