@@ -94,18 +94,11 @@ namespace GardenationApp.Controllers
             ViewBag.VegetableTypeID3 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
             ViewBag.VegetableTypeID4 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
 
-            //get select list with name of all vegetable types
-            //List<SelectListItem> items = new List<SelectListItem>();
-            //items.Add(new SelectListItem { Text = "Tomatoe", Value = "0", Selected = true });
-            //items.Add(new SelectListItem { Text = "Carrot", Value = "1" });
-            //items.Add(new SelectListItem { Text = "Romaine Lettuce", Value = "2" });
-            //items.Add(new SelectListItem { Text = "Onion", Value = "3" });
-            //ViewBag.VegetableType1 = items;
-            //ViewBag.VegetableType2 = items;
-            //ViewBag.VegetableType3 = items;
-            //ViewBag.VegetableType4 = items;
-            //ViewBag.VegetableType5 = items;
-            //ViewBag.VegetableType6 = items;
+            //get select list for garden size choices
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "4", Value = "4", Selected = true });
+            ViewBag.SizeChoices = items;
+
 
             return View(createGardenVM);
         }
@@ -124,7 +117,7 @@ namespace GardenationApp.Controllers
                 Garden garden = new Garden();
                 garden.GardenID = createGardenVM.GardenID;
                 garden.Name = createGardenVM.Name;
-                garden.SqFeet = createGardenVM.Size;
+                garden.SqFeet = 4;   //createGardenVM.Size; TODO: Resolve problem with value not passing to controller
                 garden.CreatedDate = DateTime.Now;
                 garden.CityID = createGardenVM.CityID;
                 db.Gardens.Add(garden);
@@ -132,7 +125,7 @@ namespace GardenationApp.Controllers
                 //TODO: Create a vegetable Type that represents the choice of no vegetable
                 //create a list of the viewmodels vegetables that were passed
                 List<int> ViewModelVegetableIDs = new List<int>();
-                if(createGardenVM.Size == 4) {
+                if(garden.SqFeet == 4) {
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
@@ -156,7 +149,7 @@ namespace GardenationApp.Controllers
                 }
 
                 db.SaveChanges();
-                return View(garden);
+                return RedirectToAction("Details", "Gardens", new { id = garden.GardenID });
                 
             }
 
