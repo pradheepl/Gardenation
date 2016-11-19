@@ -20,8 +20,6 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="date" />
     <Property Name="LastVisitedDate" Type="date" />
-    <Property Name="SpringFrostDate" Type="date" />
-    <Property Name="FallFrostDate" Type="date" />
     <Property Name="SqFeet" Type="int" />
     <Property Name="CityID" Type="int" Nullable="false" />
   </EntityType>

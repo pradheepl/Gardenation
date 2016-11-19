@@ -139,7 +139,7 @@ namespace GardenationApp.Controllers
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
                 }
 
-                //create list of new vegetables for each TypeID
+                //Add vegetables to the list according to the size of the garden
                 List<Vegetable> NewVegetableList = new List<Vegetable>();
                 for(int i = 0; i < ViewModelVegetableIDs.Count; i++)
                 {

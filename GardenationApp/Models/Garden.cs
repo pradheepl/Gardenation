@@ -27,8 +27,6 @@ namespace GardenationApp.Models
         public Nullable<System.DateTime> LastVisitedDate { get; set; }
         public Nullable<int> SqFeet { get; set; }
         public int CityID { get; set; }
-        public Nullable<System.DateTime> SpringFrostDate { get; set; }
-        public Nullable<System.DateTime> FallFrostDate { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

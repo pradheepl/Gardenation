@@ -26,8 +26,6 @@
     <NavigationProperty Name="City" Relationship="Self.FK_Garden_City" FromRole="Garden" ToRole="City" />
     <NavigationProperty Name="PromptListItems" Relationship="Self.FK_PromptListItem_Garden" FromRole="Garden" ToRole="PromptListItem" />
     <NavigationProperty Name="Vegetables" Relationship="Self.FK_Vegetable_Garden" FromRole="Garden" ToRole="Vegetable" />
-    <Property Name="SpringFrostDate" Type="DateTime" Precision="0" />
-    <Property Name="FallFrostDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="PromptListItem">
     <Key>
