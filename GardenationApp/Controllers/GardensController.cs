@@ -32,6 +32,24 @@ namespace GardenationApp.Controllers
 
             
             Garden garden = db.Gardens.Find(id);
+            //Declare ViewBags outside of if statement scope
+            ViewBag.BootstrapColumnClass = "";
+            ViewBag.GardenClass = "";
+            ViewBag.SqftClass = "";
+
+            if (garden.SqFeet == 4)
+            {
+                ViewBag.BootstrapColumnClass = "col-xs-6";
+                ViewBag.GardenClass = "garden4";
+                ViewBag.SqftClass = "sqft4";
+            }
+
+            if (garden.SqFeet == 6)
+            {
+                ViewBag.BootstrapColumnClass = "col-xs-4";
+                ViewBag.GardenClass = "garden6";
+                ViewBag.SqftClass = "sqft6";
+            }
 
             if (garden == null)
             {
@@ -93,12 +111,14 @@ namespace GardenationApp.Controllers
             ViewBag.VegetableTypeID2 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
             ViewBag.VegetableTypeID3 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
             ViewBag.VegetableTypeID4 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID5 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID6 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
 
             //get select list for garden size choices
             List<SelectListItem> items = new List<SelectListItem>();
             items.Add(new SelectListItem { Text = "4", Value = "4", Selected = true });
-            ViewBag.SizeChoices = items;
-
+            items.Add(new SelectListItem { Text = "6", Value = "6" });
+            ViewBag.Sqft = items;
 
             return View(createGardenVM);
         }
@@ -108,7 +128,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GardenID,Name,Size,CityID,VegetableTypeID1,VegetableTypeID2,VegetableTypeID3,VegetableTypeID4")] CreateGardenVM createGardenVM)
+        public ActionResult Create([Bind(Include = "GardenID,Name,Sqft,CityID,VegetableTypeID1,VegetableTypeID2,VegetableTypeID3,VegetableTypeID4,VegetableTypeID5,VegetableTypeID6")] CreateGardenVM createGardenVM)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +137,7 @@ namespace GardenationApp.Controllers
                 Garden garden = new Garden();
                 garden.GardenID = createGardenVM.GardenID;
                 garden.Name = createGardenVM.Name;
-                garden.SqFeet = 4;   //createGardenVM.Size; TODO: Resolve problem with value not passing to controller
+                garden.SqFeet = Int32.Parse(createGardenVM.Sqft); //VM Sqft is string because it receives from selectlist viewbag
                 garden.CreatedDate = DateTime.Now;
                 garden.CityID = createGardenVM.CityID;
                 db.Gardens.Add(garden);
@@ -125,11 +145,22 @@ namespace GardenationApp.Controllers
                 //TODO: Create a vegetable Type that represents the choice of no vegetable
                 //create a list of the viewmodels vegetables that were passed
                 List<int> ViewModelVegetableIDs = new List<int>();
-                if(garden.SqFeet == 4) {
+
+                if (garden.SqFeet == 4) {
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
                     ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
+                }
+                
+                if(garden.SqFeet == 6)
+                {
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID5);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID6);
                 }
 
                 //Add vegetables to the list according to the size of the garden
@@ -149,6 +180,7 @@ namespace GardenationApp.Controllers
                 }
 
                 db.SaveChanges();
+                //show the details of created garden
                 return RedirectToAction("Details", "Gardens", new { id = garden.GardenID });
                 
             }

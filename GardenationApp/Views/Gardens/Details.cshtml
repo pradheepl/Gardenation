@@ -11,12 +11,12 @@
     @Html.ActionLink("Back to List", "Index", new { id = Model.GardenID }, new { @class = "btn btn-default" })
 </span>
 
-<div class="row garden">
+<div class="row @ViewBag.GardenClass">
 
             @*Create a responsive square for each vegetable in the garden model*@
             @foreach (var item in Model.Vegetables)
             {
-                <div class="col-xs-6 bg-danger sqft veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
+                <div class="@(ViewBag.BootstrapColumnClass) bg-danger @(ViewBag.SqftClass) veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
             }
 
 </div>
