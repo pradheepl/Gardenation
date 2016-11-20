@@ -30,7 +30,7 @@ textarea {
     }
     /*Keep the garden in the middle of the screen and create a border to wrap all the sqft divs*/
     .garden {
-        border: .3em solid tan;
+        border: .5em solid tan;
         max-width: 30em;
         margin:auto;
     }
@@ -44,7 +44,7 @@ textarea {
             position: relative;
             text-align: center;
             padding: 23% 0;
-            border: .3em solid tan;
+            border: .5em solid tan;
             background-image: url('../Images/GardenSoil.jpg');
             background-size: cover;
             z-index: -2;

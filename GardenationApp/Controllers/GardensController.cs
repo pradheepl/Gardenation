@@ -211,6 +211,11 @@ namespace GardenationApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Garden garden = db.Gardens.Find(id);
+            //remove all the vegetables first since their gardenId is not nullable
+            foreach (var veg in garden.Vegetables.ToList()) //set to list to handle foreach modify error
+            {
+                db.Vegetables.Remove(veg);
+            }
             db.Gardens.Remove(garden);
             db.SaveChanges();
             return RedirectToAction("Index");
