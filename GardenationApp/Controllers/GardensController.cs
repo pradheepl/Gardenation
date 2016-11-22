@@ -201,6 +201,12 @@ namespace GardenationApp.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "4", Value = "4", Selected = true });
+            items.Add(new SelectListItem { Text = "6", Value = "6" });
+            ViewBag.SqFeet = items;
+
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
             return View(garden);
         }
@@ -210,7 +216,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Edit([Bind(Include = "GardenID,Name,SqFeet,CityID")] Garden garden)
         {
             if (ModelState.IsValid)
             {
