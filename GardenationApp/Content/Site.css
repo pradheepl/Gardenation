@@ -110,3 +110,8 @@ textarea {
         bottom: 0;
         overflow: hidden;
     }
+
+    .alert{
+        text-align:center;
+        
+    }
