@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GardenationApp.Models;
+using GardenationApp.ViewModels;
 
 namespace GardenationApp.Controllers
 {
@@ -31,10 +32,23 @@ namespace GardenationApp.Controllers
 
             
             Garden garden = db.Gardens.Find(id);
-            ViewBag.Vegetable1 = "";
-            foreach(var item in garden.Vegetables)
+            //Declare ViewBags outside of if statement scope
+            ViewBag.BootstrapColumnClass = "";
+            ViewBag.GardenClass = "";
+            ViewBag.SqftClass = "";
+
+            if (garden.SqFeet == 4)
             {
-                
+                ViewBag.BootstrapColumnClass = "col-xs-6";
+                ViewBag.GardenClass = "garden4";
+                ViewBag.SqftClass = "sqft4";
+            }
+
+            if (garden.SqFeet == 6)
+            {
+                ViewBag.BootstrapColumnClass = "col-xs-4";
+                ViewBag.GardenClass = "garden6";
+                ViewBag.SqftClass = "sqft6";
             }
 
             if (garden == null)
@@ -44,13 +58,69 @@ namespace GardenationApp.Controllers
             return View(garden);
         }
 
+        //// GET: Gardens/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
+        //    ViewBag.VegetableTypeID1 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+        //    ViewBag.VegetableTypeID2 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+        //    ViewBag.VegetableTypeID3 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+        //    ViewBag.VegetableTypeID4 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+
+        //    //get select list with name of all vegetable types
+        //    //List<SelectListItem> items = new List<SelectListItem>();
+        //    //items.Add(new SelectListItem { Text = "Tomatoe", Value = "0", Selected = true });
+        //    //items.Add(new SelectListItem { Text = "Carrot", Value = "1" });
+        //    //items.Add(new SelectListItem { Text = "Romaine Lettuce", Value = "2" });
+        //    //items.Add(new SelectListItem { Text = "Onion", Value = "3" });
+        //    //ViewBag.VegetableType1 = items;
+        //    //ViewBag.VegetableType2 = items;
+        //    //ViewBag.VegetableType3 = items;
+        //    //ViewBag.VegetableType4 = items;
+        //    //ViewBag.VegetableType5 = items;
+        //    //ViewBag.VegetableType6 = items;
+
+        //    return View();
+        //}
+
+        //// POST: Gardens/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "GardenID,Name,SqFeet,CityID")] Garden garden)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Gardens.Add(garden);
+        //        garden.CreatedDate = DateTime.Now;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Create", "Vegetables");
+        //    }
+
+        //    ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
+        //    return View(garden);
+        //}
+
         // GET: Gardens/Create
         public ActionResult Create()
         {
+            CreateGardenVM createGardenVM = new CreateGardenVM();
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
-            //get select list with name of all vegetable types
-            ViewBag.VegetableTypes = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
-            return View();
+            ViewBag.VegetableTypeID1 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID2 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID3 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID4 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID5 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+            ViewBag.VegetableTypeID6 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
+
+            //get select list for garden size choices
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "4", Value = "4", Selected = true });
+            items.Add(new SelectListItem { Text = "6", Value = "6" });
+            ViewBag.Sqft = items;
+
+            return View(createGardenVM);
         }
 
         // POST: Gardens/Create
@@ -58,18 +128,65 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GardenID,LastVisitedDate,Name,SqFeet,CityID")] Garden garden)
+        public ActionResult Create([Bind(Include = "GardenID,Name,Sqft,CityID,VegetableTypeID1,VegetableTypeID2,VegetableTypeID3,VegetableTypeID4,VegetableTypeID5,VegetableTypeID6")] CreateGardenVM createGardenVM)
         {
             if (ModelState.IsValid)
             {
-                db.Gardens.Add(garden);
+
+                //create a garden with no vegetables
+                Garden garden = new Garden();
+                garden.GardenID = createGardenVM.GardenID;
+                garden.Name = createGardenVM.Name;
+                garden.SqFeet = Int32.Parse(createGardenVM.Sqft); //VM Sqft is string because it receives from selectlist viewbag
                 garden.CreatedDate = DateTime.Now;
+                garden.CityID = createGardenVM.CityID;
+                db.Gardens.Add(garden);
+
+                //TODO: Create a vegetable Type that represents the choice of no vegetable
+                //create a list of the viewmodels vegetables that were passed
+                List<int> ViewModelVegetableIDs = new List<int>();
+
+                if (garden.SqFeet == 4) {
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
+                }
+                
+                if(garden.SqFeet == 6)
+                {
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID5);
+                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID6);
+                }
+
+                //Add vegetables to the list according to the size of the garden
+                List<Vegetable> NewVegetableList = new List<Vegetable>();
+                for(int i = 0; i < ViewModelVegetableIDs.Count; i++)
+                {
+                   var newVeg = new Vegetable();
+                    NewVegetableList.Add(newVeg);
+                }
+
+                //for each vegetable in the list of new vegetables, set their properies at add them to the database
+                for(var i = 0; i < NewVegetableList.Count; i++)
+                {
+                    NewVegetableList[i].VegetableTypeID = ViewModelVegetableIDs[i];
+                    NewVegetableList[i].GardenID = createGardenVM.GardenID;
+                    db.Vegetables.Add(NewVegetableList[i]);
+                }
+
                 db.SaveChanges();
-                return RedirectToAction("Create", "Vegetables");
+                //show the details of created garden
+                return RedirectToAction("Details", "Gardens", new { id = garden.GardenID });
+                
             }
 
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
-            return View(garden);
+            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", createGardenVM.CityID);
+            return View();
         }
 
         // GET: Gardens/Edit/5
@@ -84,6 +201,12 @@ namespace GardenationApp.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "4", Value = "4", Selected = true });
+            items.Add(new SelectListItem { Text = "6", Value = "6" });
+            ViewBag.SqFeet = items;
+
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
             return View(garden);
         }
@@ -93,7 +216,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GardenID,Name,CreatedDate,LastVisitedDate,SqFeet,CityID")] Garden garden)
+        public ActionResult Edit([Bind(Include = "GardenID,Name,SqFeet,CityID")] Garden garden)
         {
             if (ModelState.IsValid)
             {
@@ -126,6 +249,11 @@ namespace GardenationApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Garden garden = db.Gardens.Find(id);
+            //remove all the vegetables first since their gardenId is not nullable
+            foreach (var veg in garden.Vegetables.ToList()) //set to list to handle foreach modify error
+            {
+                db.Vegetables.Remove(veg);
+            }
             db.Gardens.Remove(garden);
             db.SaveChanges();
             return RedirectToAction("Index");

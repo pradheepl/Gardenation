@@ -1,4 +1,4 @@
-﻿@model GardenationApp.Models.Garden
+﻿@model GardenationApp.ViewModels.CreateGardenVM
 
 @{
     ViewBag.Title = "Create";
@@ -14,7 +14,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">Name your Garden</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -22,31 +22,56 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">Choose your Size</span>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                @Html.DropDownList("Sqft", null, htmlAttributes: new { @class = "form-control"})
+            </div>
+        </div>
+        <span class="col-xs-12">Choose your Veggies</span>
+        <div class="form-group">
+            <span class="col-md-2">Vegetable Choice 1</span>
+            <div class="col-md-10">
+                @Html.DropDownList("VegetableTypeID1", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastVisitedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">Vegetable Choice 2</span>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastVisitedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastVisitedDate, "", new { @class = "text-danger" })
+                @Html.DropDownList("VegetableTypeID2", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SqFeet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">Vegetable Choice 3</span>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SqFeet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SqFeet, "", new { @class = "text-danger" })
+                @Html.DropDownList("VegetableTypeID3", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CityID, "CityID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">Vegetable Choice 4</span>
+            <div class="col-md-10">
+                @Html.DropDownList("VegetableTypeID4", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="col-md-2">Vegetable Choice 5</span>
+            <div class="col-md-10">
+                @Html.DropDownList("VegetableTypeID5", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="col-md-2">Vegetable Choice 6</span>
+            <div class="col-md-10">
+                @Html.DropDownList("VegetableTypeID6", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            What city is your garden closest to?
             <div class="col-md-10">
                 @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
@@ -55,7 +80,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add Vegetables" class="btn btn-default" />
+                <input type="submit" value="Create Garden!" class="btn btn-default" />
             </div>
         </div>
     </div>

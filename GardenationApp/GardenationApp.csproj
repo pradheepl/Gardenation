@@ -247,6 +247,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CreateGardenVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -264,9 +265,9 @@
     <Content Include="Images\CarrotIcon.png" />
     <Content Include="Images\fresh_vegetable_row.jpg" />
     <Content Include="Images\GardenSoil.jpg" />
+    <Content Include="Images\LettuceIcon.png" />
     <Content Include="Images\OnionIcon.png" />
     <Content Include="Images\TomatoIcon.png" />
-    <Content Include="Images\LettuceIcon.png" />
     <Content Include="Models\Gardenationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Gardenationdb.edmx</DependentUpon>
