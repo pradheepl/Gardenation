@@ -9,14 +9,12 @@
         <div class="intro-body">
             <div class="container ">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-xs-12 col-lg-8 col-lg-offset-2">
                         <h1 class="brand-heading">Gardenation</h1>
-                        <p class="intro-text">Grow food in Ohio easily and affordably with no experience.</p>
-                        <div>
-                            <h2 class="container" id="tutorial">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/AURVxvIZrmU" frameborder="0" allowfullscreen></iframe>
-                            </h2>
+                        <div class="container" id="tutorial">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/kkVIrboTbrg" frameborder="0" allowfullscreen></iframe>
                         </div>
+                        <p class="intro-text">Grow food in Ohio easily and affordably with no experience.</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -30,8 +28,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About Gardenation</h2>
-                <p>The four greatest obstacles Americans face to starting a garden are lack of time, money, patience, and space.</p>
+                <p>The four most common obstacles to starting a garden are lack of time, money, patience, and space.</p>
                 <p>Gardenation is an app designed to help you get started in less than 10 minutes, and give you instructions and advice all the way to winter.</p>
+                <p><img class="img-responsive" src="~/Images/fresh_vegetable_row.jpg" /></p>
             </div>
         </div>
     </section>
@@ -42,7 +41,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Let's Get Started</h2>
                     <p>Create an account and let's start building your personal garden now!</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Create an Account</a>
+                    @Html.ActionLink("Let's Get Started!", "Create", "Gardens", null, new { @class="btn btn-default btn-lg"})
                 </div>
             </div>
         </div>
@@ -69,12 +68,8 @@
              </div>
          </div>
      </section>    -->
-    <!-- Map Section -->
-    <div id="map"></div>
 
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 </body> 

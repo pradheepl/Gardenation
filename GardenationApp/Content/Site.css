@@ -30,20 +30,25 @@ textarea {
     }
     /*Keep the garden in the middle of the screen and create a border to wrap all the sqft divs*/
     .garden {
-        margin: 0 20%;
         border: .3em solid tan;
-        
+        max-width: 30em;
+        margin:auto;
     }
+
+.absulute{
+    position:absolute;
+}
+
     /*Responsive squares with a responsive background image*/
-    .garden .sqft {
-        position: relative;
-        text-align: center;
-        padding: 23% 0;
-        border: .3em solid tan;
-        background-image: url('https://sftextures.com/texture/4071/0/4068/seamless-dark-stone-texture-background-black-shiny-rough-surface-mystical-bumpy-hard-ground-256x170.jpg');
-        background-size: cover;
-        z-index: -2;
-    }
+        .garden .sqft {
+            position: relative;
+            text-align: center;
+            padding: 23% 0;
+            border: .3em solid tan;
+            background-image: url('../Images/GardenSoil.jpg');
+            background-size: cover;
+            z-index: -2;
+        }
     /*the droplet signals which plants need watered*/
     .garden .sqft .droplet-reference {
         background-image: url("http://www.kharaghanihome.com/wp-content/uploads/2013/07/Drop.png");
@@ -109,4 +114,13 @@ textarea {
         right: 0;
         bottom: 0;
         overflow: hidden;
+    }
+
+    /*change the garden list to display nicer*/
+
+    .garden-list{
+        margin-left:-7%;
+        margin-top: 0;
+        margin-bottom: 5%;
+        list-style-type:none;
     }

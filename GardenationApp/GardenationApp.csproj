@@ -262,6 +262,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\CarrotIcon.png" />
+    <Content Include="Images\fresh_vegetable_row.jpg" />
+    <Content Include="Images\GardenSoil.jpg" />
     <Content Include="Images\OnionIcon.png" />
     <Content Include="Images\TomatoIcon.png" />
     <Content Include="Images\LettuceIcon.png" />
@@ -296,6 +298,12 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\GardenScript.js" />
+    <Content Include="Scripts\grayscale.es5.js">
+      <DependentUpon>grayscale.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\grayscale.es5.min.js">
+      <DependentUpon>grayscale.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -308,13 +316,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include=".gitignore" />
-    <Content Include="Images\downloads-bg.jpg" />
     <Content Include="Scripts\grayscale.js" />
     <Content Include="Scripts\grayscale.min.js" />
     <Content Include="Scripts\gulpfile.js" />
     <Content Include="Template\index.html" />
-    <Content Include="Images\intro-bg.jpg" />
-    <Content Include="Images\map-marker.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

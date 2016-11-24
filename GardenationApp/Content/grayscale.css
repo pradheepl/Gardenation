@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: black;
+  color: #654321;
   background-color: white;
 }
 html {
@@ -15,7 +15,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 35px;
+  margin: 0 0 .5em 0;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -42,7 +42,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #1d9b6c;
+  color: #181008;
 }
 .light {
   font-weight: 400;
@@ -55,8 +55,8 @@ a:focus {
   background-color: #ed9121;
 }
 .navbar-custom .navbar-toggle {
-  color: #ed9121;
-  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  background-color: rgba(237, 145, 33, 0.2);
   font-size: 12px;
 }
 .navbar-custom .navbar-toggle:focus,
@@ -65,12 +65,14 @@ a:focus {
 }
 .navbar-custom .navbar-brand {
   font-weight: 700;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 4em;
 }
 .navbar-custom .navbar-brand:focus {
   outline: none;
 }
 .navbar-custom a {
-  color: black;
+  color: #654321;
 }
 .navbar-custom .nav li a {
   -webkit-transition: background 0.3s ease-in-out;
@@ -78,7 +80,7 @@ a:focus {
   transition: background 0.3s ease-in-out;
 }
 .navbar-custom .nav li a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(101, 67, 33, 0.8);
   outline: none;
   background-color: transparent;
 }
@@ -105,30 +107,32 @@ a:focus {
   }
   .navbar-custom.top-nav-collapse {
     padding: 0;
-    background: black;
+    background: #8fdd2c;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
   }
 }
 .intro {
-  display: table;
   width: 100%;
   height: auto;
   padding: 100px 0;
   text-align: center;
-  color: white;
-  background: url(../Images/intro-bg.jpg) no-repeat bottom center scroll;
-  background-color: black;
+  color: #654321;
+  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
 }
 .intro .intro-body {
-  display: table-cell;
   vertical-align: middle;
 }
 .intro .intro-body .brand-heading {
-  font-size: 40px;
+  font-size: 70px;
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+.intro .intro-body img {
+  margin: 0 auto;
 }
 .intro .intro-body .intro-text {
   font-size: 18px;
@@ -153,7 +157,7 @@ a:focus {
   border: 2px solid white;
   border-radius: 100% !important;
   font-size: 40px;
-  color: white;
+  color: #654321;
   background: transparent;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
@@ -162,7 +166,7 @@ a:focus {
 .btn-circle:hover,
 .btn-circle:focus {
   outline: none;
-  color: white;
+  color: #654321;
   background: rgba(255, 255, 255, 0.1);
 }
 .btn-circle i.animated {
@@ -210,23 +214,12 @@ a:focus {
   }
 }
 .content-section {
-  padding-top: 100px;
+  padding-top: 3em;
 }
 .download-section {
   width: 100%;
   padding: 50px 0;
   color: white;
-  background: url(../Images/downloads-bg.jpg) no-repeat center center scroll;
-  background-color: black;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-#map {
-  width: 100%;
-  height: 200px;
-  margin-top: 100px;
 }
 @media (min-width: 767px) {
   .content-section {
@@ -234,10 +227,6 @@ a:focus {
   }
   .download-section {
     padding: 100px 0;
-  }
-  #map {
-    height: 400px;
-    margin-top: 250px;
   }
 }
 .btn {
@@ -250,16 +239,16 @@ a:focus {
   border-radius: 0;
 }
 .btn-default {
-  border: 1px solid #42DCA3;
-  color: #42DCA3;
+  border: 1px solid #8fdd2c;
+  color: black;
   background-color: transparent;
 }
 .btn-default:hover,
 .btn-default:focus {
-  border: 1px solid #42DCA3;
+  border: 1px solid #8fdd2c;
   outline: none;
   color: black;
-  background-color: #42DCA3;
+  background-color: #8fdd2c;
 }
 ul.banner-social-buttons {
   margin-top: 0;
