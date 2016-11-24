@@ -116,11 +116,15 @@ textarea {
         overflow: hidden;
     }
 
-    /*change the garden list to display nicer*/
 
-    .garden-list{
-        margin-left:-7%;
-        margin-top: 0;
-        margin-bottom: 5%;
-        list-style-type:none;
-    }
+/*change the garden list to display nicer*/
+.garden-list {
+    margin-left: -7%;
+    margin-top: 0;
+    margin-bottom: 5%;
+    list-style-type: none;
+}
+
+.alert{
+    text-align:center;
+}

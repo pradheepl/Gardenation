@@ -21,6 +21,7 @@
 
 </div>
 
+<<<<<<< HEAD
 <div class="row">
         @*Create 10 new placeholder tasks using bootstrap modules*@
 
@@ -37,27 +38,88 @@
 
 
 
+=======
+@*@for (var i = 0; i < 10; i++)
+{
+    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+     <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your garden
+    </div>
+}*@
+>>>>>>> 4f36504b4d45af7afa32a956d840a7a626942fa1
 
 
 
 <div>
-    <h4></h4>
+    <h4>Task List</h4>
+     @* for each statement that utilizes objects in promtlistitems  *@
+    @foreach (var item in Model.PromptListItems)
+    {
+        //promtlistitem of 1 equals water
+        if (item.PromptListItemID == 1)
+        {
+            @*<div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your garden
+            </div>*@
+            foreach (var veggie in Model.Vegetables)
+            {
+                if (veggie.VegetableID == 1)
+                {
+                    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your @veggie.VegetableType.Name
+                    </div>
+                }
 
+                if (veggie.VegetableID == 2)
+                {
+                    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your @veggie.VegetableType.Name
+                    </div>
+                }
+
+                if (veggie.VegetableID == 3)
+                {
+                    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your @veggie.VegetableType.Name
+                    </div>
+                }
+
+                if (veggie.VegetableID == 4)
+                {
+                    <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                        <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your @veggie.VegetableType.Name
+                    </div>
+                }
+            }
+        }
+        if (item.PromptListItemID == 3)
+        {
+            <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-warning alert-dismissible fade in' role='alert'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                <span class='glyphicon glyphicon-grain' aria-hidden='true'></span>Harvest your Garden on @item.TriggerDate
+            </div>
+        }
+        if (item.PromptListItemID == 2)
+        {
+            <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-success alert-dismissible fade in' role='alert'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                <span class='glyphicon glyphicon-scissors' aria-hidden='true'></span>Weed your garden 
+            </div>
+        }
+
+    }
 
     <dl class="dl-horizontal">
         <dt>
 
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastVisitedDate)
-        </dt>
-
+        
         <dd>
             @Html.DisplayFor(model => model.LastVisitedDate)
         </dd>
@@ -71,7 +133,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City.Name)
+            City Name
         </dt>
 
         <dd>
