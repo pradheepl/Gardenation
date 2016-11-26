@@ -41,7 +41,7 @@ namespace GardenationApp.Controllers
             {
                 ViewBag.BootstrapColumnClass = "col-xs-6";
                 ViewBag.GardenClass = "garden4";
-                ViewBag.SqftClass = "sqft4";
+                ViewBag.SqftClass = "sqft4"; //TODO: don't need this - just use size of garden
             }
 
             if (garden.SqFeet == 6)

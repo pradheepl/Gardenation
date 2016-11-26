@@ -11,12 +11,12 @@
     @Html.ActionLink("Back to List", "Index", new { id = Model.GardenID }, new { @class = "btn btn-default" })
 </span>
 
-<div class="row garden">
+<div class="row garden@(Model.SqFeet)">
 
             @*Create a responsive square for each vegetable in the garden model*@
             @foreach (var item in Model.Vegetables)
             {
-                <div class="col-xs-6 bg-danger sqft veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
+                <div class="col-xs-6 bg-danger sqft@(Model.SqFeet) veg@(item.VegetableID)"><span class="@(item.VegetableType.Name)"></span><span class="droplet-reference"></span></div>
             }
 
 </div>
@@ -35,16 +35,16 @@
 
 <div>
     <h4>Task List</h4>
-     @* for each statement that utilizes objects in promtlistitems  *@
+     @*for each statement that utilizes objects in promtlistitems*@ 
     @foreach (var item in Model.PromptListItems)
     {
         //promtlistitem of 1 equals water
         if (item.PromptListItemID == 1)
         {
-            @*<div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
+            <div class='col-xs-12 col-md-8 col-md-offset-2 alert alert-info alert-dismissible fade in' role='alert'>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
                 <span class='glyphicon glyphicon-tint' aria-hidden='true'></span>Water your garden
-            </div>*@
+            </div>
             foreach (var veggie in Model.Vegetables)
             {
                 if (veggie.VegetableID == 1)
@@ -124,5 +124,5 @@
         </dd>
 
     </dl>
-</div>
+</div>*@
 
