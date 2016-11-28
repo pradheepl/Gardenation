@@ -44,6 +44,29 @@ namespace GardenationApp.Controllers
             return View();
         }
 
+
+        // POST: PromptListItems/Complete/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Complete(int? id)
+        {
+            //get the current prompt list item
+            var thisPrompt = db.PromptListItems.Find(id);
+            //return 404 if not in database
+            if (thisPrompt == null)
+            {
+                return HttpNotFound();
+            }
+
+            thisPrompt.Complete = true;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Gardens", new { id = thisPrompt.GardenID });
+        }
+
+
         // POST: PromptListItems/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

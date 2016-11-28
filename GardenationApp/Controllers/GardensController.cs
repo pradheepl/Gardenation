@@ -185,6 +185,8 @@ namespace GardenationApp.Controllers
                     prompt.TriggerDate = DateTime.Now;
                     //remember the garden
                     prompt.GardenID = garden.GardenID;
+                    //complete false
+                    prompt.Complete = false;
                     prompt.PromptListTypeID = 4; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
                     //find the name of the vegetable type based on ID
                     VegetableType vegType = new VegetableType();

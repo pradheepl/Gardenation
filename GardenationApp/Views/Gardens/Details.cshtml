@@ -5,7 +5,7 @@
 }
 
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2>Garden: @Html.DisplayFor(model => model.Name)</h2>
 <span>
     @Html.ActionLink("Edit", "Edit", new { id = Model.GardenID }, new { @class = "btn btn-default" })    
     @Html.ActionLink("Back to List", "Index", new { id = Model.GardenID }, new { @class = "btn btn-default" })
@@ -20,15 +20,43 @@
             }
 
 </div>
+<h3>ToDo</h3>
 
-
-@foreach(var prompt in Model.PromptListItems)
+@*for each prompt, show it as a to-do if it has not been completed*@
+@foreach (var prompt in Model.PromptListItems)
 {
-    <div class='col-xs-12 col-md-8 col-md-offset-2 alert @(prompt.PromptListType.ColorClass) alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
-        <button class="prompt-info" aria-label="More Information" onclick="ShowInformation()"><i class=" glyphicon glyphicon-align-left glyphicon-info-sign"></i></button>
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class="glyphicon glyphicon-unchecked prompt-checkbox"></i></span></button>
-        <span class='@(prompt.PromptListType.IconClass)' aria-hidden='true'></span><span class="text-center">@(prompt.Message) </span>
-    </div>
+    if (prompt.Complete == false)
+    {
+        <div class='col-xs-12 col-md-8 col-md-offset-2 alert @(prompt.PromptListType.ColorClass) alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
+            <button class="prompt-info" aria-label="More Information" onclick=""><i class=" glyphicon glyphicon-align-left glyphicon-info-sign"></i></button>
+
+            @*Action command to change the prompt complete propery to true*@
+            @using (Html.BeginForm("Complete", "PromptListItems", FormMethod.Post))
+            {
+                
+                @Html.AntiForgeryToken()
+                <input id="id" name="id" type="hidden" value="@prompt.PromptListItemID"/>@*pass prompt id to controller*@
+                <button><span class="glyphicon glyphicon-unchecked prompt-checkbox"></span></button>
+            }
+            <span class='@(prompt.PromptListType.IconClass)' aria-hidden='true'></span><span class="text-center prompt-message"><strike>@(prompt.Message)</strike> </span>
+        </div>
+    }
+
 }
 
+<hr />
+
+<h3>Dunzo</h3>
+@foreach (var prompt in Model.PromptListItems)
+{
+    if (prompt.Complete == true)
+    {
+        <div class='col-xs-12 col-md-8 col-md-offset-2 alert @(prompt.PromptListType.ColorClass) alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
+            <button class="prompt-info" aria-label="More Information" onclick=""><span class=" glyphicon glyphicon-align-left glyphicon-info-sign"></span></button>
+            <button class=" prompt-checkbox"><span class="glyphicon glyphicon-check"></span></button>
+            <span class='@(prompt.PromptListType.IconClass)' aria-hidden='true'></span><span class="text-center prompt-message">@(prompt.Message) </span>
+        </div>
+    }
+
+}
 

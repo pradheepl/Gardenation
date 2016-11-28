@@ -167,7 +167,9 @@ textarea {
     right:1em;
 }
 
-
+.strikeout{
+    text-decoration:line-through;
+}
 
 
 
