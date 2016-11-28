@@ -61,6 +61,7 @@ namespace GardenationApp.Controllers
             }
 
             thisPrompt.Complete = true;
+
             db.SaveChanges();
 
             return RedirectToAction("Details", "Gardens", new { id = thisPrompt.GardenID });

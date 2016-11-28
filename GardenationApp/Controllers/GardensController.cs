@@ -30,8 +30,34 @@ namespace GardenationApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            
             Garden garden = db.Gardens.Find(id);
+
+            if (garden == null)
+            {
+                return HttpNotFound();
+            }
+            
+            //Create water prompts for each vegetable that is not
+            foreach(var veg in garden.Vegetables)
+            {
+                if (veg.WaterCountdown <= 0 && veg.WaterReminderActive == false)
+                {
+                    veg.WaterReminderActive = true;
+
+                    PromptListItem newWaterPrompt = new PromptListItem();
+                    newWaterPrompt.Complete = false;
+                    newWaterPrompt.GardenID = garden.GardenID;
+                    newWaterPrompt.Message = "Time to water your " + veg.VegetableType.Name;
+                    newWaterPrompt.PromptListTypeID = 1; //TODO: refactor this hard code to search for the "Water" type
+                    newWaterPrompt.TriggerDate = DateTime.Now;
+                    newWaterPrompt.VegetableReference = "" + veg.VegetableID;
+
+                    db.PromptListItems.Add(newWaterPrompt);
+                }
+            }
+
+            db.SaveChanges();
+
             //Declare ViewBags outside of if statement scope
             ViewBag.BootstrapColumnClass = "";
             ViewBag.GardenClass = "";
@@ -51,56 +77,9 @@ namespace GardenationApp.Controllers
                 ViewBag.SqftClass = "sqft6";
             }
 
-            if (garden == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(garden);
         }
-
-        //// GET: Gardens/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
-        //    ViewBag.VegetableTypeID1 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
-        //    ViewBag.VegetableTypeID2 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
-        //    ViewBag.VegetableTypeID3 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
-        //    ViewBag.VegetableTypeID4 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
-
-        //    //get select list with name of all vegetable types
-        //    //List<SelectListItem> items = new List<SelectListItem>();
-        //    //items.Add(new SelectListItem { Text = "Tomatoe", Value = "0", Selected = true });
-        //    //items.Add(new SelectListItem { Text = "Carrot", Value = "1" });
-        //    //items.Add(new SelectListItem { Text = "Romaine Lettuce", Value = "2" });
-        //    //items.Add(new SelectListItem { Text = "Onion", Value = "3" });
-        //    //ViewBag.VegetableType1 = items;
-        //    //ViewBag.VegetableType2 = items;
-        //    //ViewBag.VegetableType3 = items;
-        //    //ViewBag.VegetableType4 = items;
-        //    //ViewBag.VegetableType5 = items;
-        //    //ViewBag.VegetableType6 = items;
-
-        //    return View();
-        //}
-
-        //// POST: Gardens/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "GardenID,Name,SqFeet,CityID")] Garden garden)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Gardens.Add(garden);
-        //        garden.CreatedDate = DateTime.Now;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Create", "Vegetables");
-        //    }
-
-        //    ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", garden.CityID);
-        //    return View(garden);
-        //}
 
         // GET: Gardens/Create
         public ActionResult Create()
@@ -177,6 +156,8 @@ namespace GardenationApp.Controllers
                     
                     veg.VegetableTypeID = ViewModelVegetableIDs[i];
                     veg.GardenID = createGardenVM.GardenID;
+                    veg.WaterReminderActive = false;
+                    veg.WaterCountdown = 0;
                     //Add the vegetable to the list
                     db.Vegetables.Add(veg);
 
@@ -198,7 +179,7 @@ namespace GardenationApp.Controllers
                         }
                     }
                     prompt.Message = " Time to plant your " + vegType.Name;
-                    prompt.VegetableReference = "" + vegType.Name + i.ToString();
+                    prompt.VegetableReference = "" + veg.VegetableID;
 
                     //add the prompt to the garden
                     garden.PromptListItems.Add(prompt);
