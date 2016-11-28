@@ -157,37 +157,43 @@ namespace GardenationApp.Controllers
                     veg.VegetableTypeID = ViewModelVegetableIDs[i];
                     veg.GardenID = createGardenVM.GardenID;
                     veg.WaterReminderActive = false;
-                    veg.WaterCountdown = 0;
+                    veg.WaterCountdown = 365; //it will never go off until it is planted/given a SeedDate
                     //Add the vegetable to the list
                     db.Vegetables.Add(veg);
-
-                    //add a seeding prompt for each vegetable in the database
-                    PromptListItem prompt = new PromptListItem();
-                    prompt.TriggerDate = DateTime.Now;
-                    //remember the garden
-                    prompt.GardenID = garden.GardenID;
-                    //complete false
-                    prompt.Complete = false;
-                    prompt.PromptListTypeID = 4; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
-                    //find the name of the vegetable type based on ID
-                    VegetableType vegType = new VegetableType();
-                    foreach (var type in db.VegetableTypes)
-                    {
-                        if(type.VegetableTypeID == veg.VegetableTypeID)
-                        {
-                            vegType = type;
-                        }
-                    }
-                    prompt.Message = " Time to plant your " + vegType.Name;
-                    prompt.VegetableReference = "" + veg.VegetableID;
-
-                    //add the prompt to the garden
-                    garden.PromptListItems.Add(prompt);
-
                     i++;
                 }
 
                 db.SaveChanges();
+
+                foreach(var veg2 in garden.Vegetables)
+                {
+                    //add a seeding prompt for each vegetable in the database
+                    PromptListItem newSeedPrompt = new PromptListItem();
+                    newSeedPrompt.TriggerDate = DateTime.Now;
+                    //remember the garden
+                    newSeedPrompt.GardenID = garden.GardenID;
+                    //complete false
+                    newSeedPrompt.Complete = false;
+                    newSeedPrompt.PromptListTypeID = 4; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
+                    //find the name of the vegetable type based on ID
+                    VegetableType vegType = new VegetableType();
+                    foreach (var type in db.VegetableTypes)
+                    {
+                        if (type.VegetableTypeID == veg2.VegetableTypeID)
+                        {
+                            vegType = type;
+                        }
+                    }
+                    newSeedPrompt.Message = " Time to plant your " + vegType.Name;
+                    newSeedPrompt.VegetableReference = "" + veg2.VegetableID;
+
+                    //add the prompt to the garden
+                    db.PromptListItems.Add(newSeedPrompt);
+
+                }
+
+                db.SaveChanges();
+
                 //show the details of created garden
                 return RedirectToAction("Details", "Gardens", new { id = garden.GardenID });
                 
