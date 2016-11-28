@@ -31,6 +31,9 @@
     <Property Name="TriggerDate" Type="date" Nullable="false" />
     <Property Name="GardenID" Type="int" Nullable="false" />
     <Property Name="PromptListTypeID" Type="int" Nullable="false" />
+    <Property Name="VegetableReference" Type="nvarchar" MaxLength="50" />
+    <Property Name="Message" Type="nvarchar" MaxLength="300" />
+    <Property Name="Complete" Type="bit" />
   </EntityType>
   <EntityType Name="PromptListType">
     <Key>
@@ -47,10 +50,12 @@
     </Key>
     <Property Name="VegetableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="WaterCountdown" Type="int" />
-    <Property Name="HarvestDate" Type="datetime" />
+    <Property Name="HarvestedDate" Type="datetime" />
     <Property Name="SowDate" Type="datetime" />
     <Property Name="GardenID" Type="int" Nullable="false" />
     <Property Name="VegetableTypeID" Type="int" Nullable="false" />
+    <Property Name="HarvestSuggestionDate" Type="datetime" />
+    <Property Name="WaterReminderActive" Type="bit" />
   </EntityType>
   <EntityType Name="VegetableType">
     <Key>
@@ -59,9 +64,11 @@
     <Property Name="VegetableTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="WaterFrequency" Type="int" />
-    <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
     <Property Name="EquipmentNeeded" Type="nvarchar" MaxLength="100" />
+    <Property Name="SowDateMod" Type="int" />
     <Property Name="HarvestDateMod" Type="int" />
+    <Property Name="ContinualHarvest" Type="bit" />
+    <Property Name="HarvestInstructions" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <Association Name="FK_Garden_City">
     <End Role="City" Type="Self.City" Multiplicity="1" />

@@ -16,10 +16,12 @@ namespace GardenationApp.Models
     {
         public int VegetableID { get; set; }
         public Nullable<int> WaterCountdown { get; set; }
-        public Nullable<System.DateTime> HarvestDate { get; set; }
         public Nullable<System.DateTime> SowDate { get; set; }
         public int GardenID { get; set; }
         public int VegetableTypeID { get; set; }
+        public Nullable<System.DateTime> HarvestedDate { get; set; }
+        public Nullable<System.DateTime> HarvestSuggestionDate { get; set; }
+        public Nullable<bool> WaterReminderActive { get; set; }
     
         public virtual Garden Garden { get; set; }
         public virtual VegetableType VegetableType { get; set; }

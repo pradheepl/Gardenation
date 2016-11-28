@@ -49,7 +49,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID")] PromptListItem promptListItem)
+        public ActionResult Create([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID,VegetableReference,Message")] PromptListItem promptListItem)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID")] PromptListItem promptListItem)
+        public ActionResult Edit([Bind(Include = "PromptListItemID,TriggerDate,GardenID,PromptListTypeID,VegetableReference,Message")] PromptListItem promptListItem)
         {
             if (ModelState.IsValid)
             {

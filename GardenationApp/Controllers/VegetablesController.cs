@@ -49,7 +49,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VegetableID,HarvestDate,SowDate,GardenID,VegetableTypeID")] Vegetable vegetable)
+        public ActionResult Create([Bind(Include = "VegetableID,WaterCountdown,SowDate,GardenID,VegetableTypeID,HarvestedDate,HarvestSuggestionDate,WaterReminderActive")] Vegetable vegetable)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace GardenationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VegetableID,HarvestDate,SowDate,GardenID,VegetableTypeID")] Vegetable vegetable)
+        public ActionResult Edit([Bind(Include = "VegetableID,WaterCountdown,SowDate,GardenID,VegetableTypeID,HarvestedDate,HarvestSuggestionDate,WaterReminderActive")] Vegetable vegetable)
         {
             if (ModelState.IsValid)
             {

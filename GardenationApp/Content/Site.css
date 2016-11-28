@@ -68,7 +68,7 @@ textarea {
         }
 
     /*the droplet signals which plants need watered*/
-    .garden .sqft .droplet-reference {
+    .sqft .droplet-reference {
         background-image: url("http://www.kharaghanihome.com/wp-content/uploads/2013/07/Drop.png");
         z-index: 1;
         font-size: 3em;
@@ -142,7 +142,32 @@ textarea {
     list-style-type: none;
 }
 
+/*Format Alerts*/
 .alert{
     text-align:center;
 }
+
+.prompt-info{
+    color:#c09853;
+    background:none;
+    border: none;
+    font-size:x-large;
+    position:absolute;
+    top:20%;
+    left:1em;
+}
+
+.prompt-checkbox{
+    color:#c09853;
+    background:none;
+    border: none;
+    font-size:x-large;
+    position:absolute;
+    top:20%;
+    right:1em;
+}
+
+
+
+
 

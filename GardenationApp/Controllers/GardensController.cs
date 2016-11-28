@@ -142,7 +142,6 @@ namespace GardenationApp.Controllers
                 garden.CityID = createGardenVM.CityID;
                 db.Gardens.Add(garden);
 
-                //TODO: Create a vegetable Type that represents the choice of no vegetable
                 //create a list of the viewmodels vegetables that were passed
                 List<int> ViewModelVegetableIDs = new List<int>();
 
@@ -165,18 +164,44 @@ namespace GardenationApp.Controllers
 
                 //Add vegetables to the list according to the size of the garden
                 List<Vegetable> NewVegetableList = new List<Vegetable>();
-                for(int i = 0; i < ViewModelVegetableIDs.Count; i++)
+                for(int j = 0; j < ViewModelVegetableIDs.Count; j++)
                 {
                    var newVeg = new Vegetable();
                     NewVegetableList.Add(newVeg);
                 }
 
                 //for each vegetable in the list of new vegetables, set their properies at add them to the database
-                for(var i = 0; i < NewVegetableList.Count; i++)
+                int i = 0;
+                foreach (var veg in NewVegetableList)
                 {
-                    NewVegetableList[i].VegetableTypeID = ViewModelVegetableIDs[i];
-                    NewVegetableList[i].GardenID = createGardenVM.GardenID;
-                    db.Vegetables.Add(NewVegetableList[i]);
+                    
+                    veg.VegetableTypeID = ViewModelVegetableIDs[i];
+                    veg.GardenID = createGardenVM.GardenID;
+                    //Add the vegetable to the list
+                    db.Vegetables.Add(veg);
+
+                    //add a seeding prompt for each vegetable in the database
+                    PromptListItem prompt = new PromptListItem();
+                    prompt.TriggerDate = DateTime.Now;
+                    //remember the garden
+                    prompt.GardenID = garden.GardenID;
+                    prompt.PromptListTypeID = 4; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
+                    //find the name of the vegetable type based on ID
+                    VegetableType vegType = new VegetableType();
+                    foreach (var type in db.VegetableTypes)
+                    {
+                        if(type.VegetableTypeID == veg.VegetableTypeID)
+                        {
+                            vegType = type;
+                        }
+                    }
+                    prompt.Message = " Time to plant your " + vegType.Name;
+                    prompt.VegetableReference = "" + vegType.Name + i.ToString();
+
+                    //add the prompt to the garden
+                    garden.PromptListItems.Add(prompt);
+
+                    i++;
                 }
 
                 db.SaveChanges();
@@ -253,6 +278,11 @@ namespace GardenationApp.Controllers
             foreach (var veg in garden.Vegetables.ToList()) //set to list to handle foreach modify error
             {
                 db.Vegetables.Remove(veg);
+            }
+            //remove all prompt list items
+            foreach(var prompt in garden.PromptListItems.ToList())
+            {
+                db.PromptListItems.Remove(prompt);
             }
             db.Gardens.Remove(garden);
             db.SaveChanges();

@@ -18,6 +18,9 @@ namespace GardenationApp.Models
         public System.DateTime TriggerDate { get; set; }
         public int GardenID { get; set; }
         public int PromptListTypeID { get; set; }
+        public string VegetableReference { get; set; }
+        public string Message { get; set; }
+        public Nullable<bool> Complete { get; set; }
     
         public virtual Garden Garden { get; set; }
         public virtual PromptListType PromptListType { get; set; }

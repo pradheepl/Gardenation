@@ -37,6 +37,9 @@
     <Property Name="PromptListTypeID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Garden" Relationship="Self.FK_PromptListItem_Garden" FromRole="PromptListItem" ToRole="Garden" />
     <NavigationProperty Name="PromptListType" Relationship="Self.FK_PromptListItem_PromptListType" FromRole="PromptListItem" ToRole="PromptListType" />
+    <Property Name="VegetableReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Complete" Type="Boolean" />
   </EntityType>
   <EntityType Name="PromptListType">
     <Key>
@@ -54,12 +57,14 @@
     </Key>
     <Property Name="VegetableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="WaterCountdown" Type="Int32" />
-    <Property Name="HarvestDate" Type="DateTime" Precision="3" />
     <Property Name="SowDate" Type="DateTime" Precision="3" />
     <Property Name="GardenID" Type="Int32" Nullable="false" />
     <Property Name="VegetableTypeID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Garden" Relationship="Self.FK_Vegetable_Garden" FromRole="Vegetable" ToRole="Garden" />
     <NavigationProperty Name="VegetableType" Relationship="Self.FK_Vegetable_VegetableType" FromRole="Vegetable" ToRole="VegetableType" />
+    <Property Name="HarvestedDate" Type="DateTime" Precision="3" />
+    <Property Name="HarvestSuggestionDate" Type="DateTime" Precision="3" />
+    <Property Name="WaterReminderActive" Type="Boolean" />
   </EntityType>
   <EntityType Name="VegetableType">
     <Key>
@@ -68,10 +73,12 @@
     <Property Name="VegetableTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="WaterFrequency" Type="Int32" />
-    <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="EquipmentNeeded" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="HarvestDateMod" Type="Int32" />
     <NavigationProperty Name="Vegetables" Relationship="Self.FK_Vegetable_VegetableType" FromRole="VegetableType" ToRole="Vegetable" />
+    <Property Name="SowDateMod" Type="Int32" />
+    <Property Name="ContinualHarvest" Type="Boolean" />
+    <Property Name="HarvestInstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Garden_City">
     <End Role="City" Type="Self.City" Multiplicity="1" />

@@ -29,6 +29,9 @@
     <EntitySetMapping Name="PromptListItems">
       <EntityTypeMapping TypeName="GardenationDbModel.PromptListItem">
         <MappingFragment StoreEntitySet="PromptListItem">
+          <ScalarProperty Name="Complete" ColumnName="Complete" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="VegetableReference" ColumnName="VegetableReference" />
           <ScalarProperty Name="PromptListItemID" ColumnName="PromptListItemID" />
           <ScalarProperty Name="TriggerDate" ColumnName="TriggerDate" />
           <ScalarProperty Name="GardenID" ColumnName="GardenID" />
@@ -49,9 +52,11 @@
     <EntitySetMapping Name="Vegetables">
       <EntityTypeMapping TypeName="GardenationDbModel.Vegetable">
         <MappingFragment StoreEntitySet="Vegetable">
+          <ScalarProperty Name="WaterReminderActive" ColumnName="WaterReminderActive" />
+          <ScalarProperty Name="HarvestSuggestionDate" ColumnName="HarvestSuggestionDate" />
+          <ScalarProperty Name="HarvestedDate" ColumnName="HarvestedDate" />
           <ScalarProperty Name="VegetableID" ColumnName="VegetableID" />
           <ScalarProperty Name="WaterCountdown" ColumnName="WaterCountdown" />
-          <ScalarProperty Name="HarvestDate" ColumnName="HarvestDate" />
           <ScalarProperty Name="SowDate" ColumnName="SowDate" />
           <ScalarProperty Name="GardenID" ColumnName="GardenID" />
           <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
@@ -61,10 +66,12 @@
     <EntitySetMapping Name="VegetableTypes">
       <EntityTypeMapping TypeName="GardenationDbModel.VegetableType">
         <MappingFragment StoreEntitySet="VegetableType">
+          <ScalarProperty Name="HarvestInstructions" ColumnName="HarvestInstructions" />
+          <ScalarProperty Name="ContinualHarvest" ColumnName="ContinualHarvest" />
+          <ScalarProperty Name="SowDateMod" ColumnName="SowDateMod" />
           <ScalarProperty Name="VegetableTypeID" ColumnName="VegetableTypeID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="WaterFrequency" ColumnName="WaterFrequency" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="EquipmentNeeded" ColumnName="EquipmentNeeded" />
           <ScalarProperty Name="HarvestDateMod" ColumnName="HarvestDateMod" />
         </MappingFragment>

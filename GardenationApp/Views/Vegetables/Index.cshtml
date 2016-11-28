@@ -7,11 +7,25 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add Another Vegetable", "Create", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Back to my Garden", "Index", "Gardens", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WaterCountdown)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SowDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HarvestedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HarvestSuggestionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WaterReminderActive)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Garden.Name)
         </th>
@@ -23,6 +37,21 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WaterCountdown)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HarvestedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HarvestSuggestionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WaterReminderActive)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Garden.Name)
         </td>

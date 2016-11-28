@@ -8,9 +8,9 @@
         <EntityTypeShape EntityType="GardenationDbModel.City" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.Garden" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.PromptListItem" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardenationDbModel.PromptListType" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GardenationDbModel.PromptListType" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.Vegetable" Width="1.5" PointX="7.625" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardenationDbModel.VegetableType" Width="1.5" PointX="7.625" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GardenationDbModel.VegetableType" Width="1.5" PointX="7.625" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="GardenationDbModel.FK_Garden_City" ManuallyRouted="false" />
         <AssociationConnector Association="GardenationDbModel.FK_PromptListItem_Garden" ManuallyRouted="false" />
         <AssociationConnector Association="GardenationDbModel.FK_Vegetable_Garden" ManuallyRouted="false" />

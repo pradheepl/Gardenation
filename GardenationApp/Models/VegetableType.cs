@@ -23,9 +23,11 @@ namespace GardenationApp.Models
         public int VegetableTypeID { get; set; }
         public string Name { get; set; }
         public Nullable<int> WaterFrequency { get; set; }
-        public string ImagePath { get; set; }
         public string EquipmentNeeded { get; set; }
         public Nullable<int> HarvestDateMod { get; set; }
+        public Nullable<int> SowDateMod { get; set; }
+        public Nullable<bool> ContinualHarvest { get; set; }
+        public string HarvestInstructions { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vegetable> Vegetables { get; set; }
