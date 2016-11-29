@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GardenationApp.Models;
+using Owin;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin;
 
 namespace GardenationApp.Controllers
 {
@@ -421,7 +424,7 @@ namespace GardenationApp.Controllers
             }
 
             base.Dispose(disposing);
-        }
+        }              
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -480,6 +483,6 @@ namespace GardenationApp.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+        #endregion        
     }
 }

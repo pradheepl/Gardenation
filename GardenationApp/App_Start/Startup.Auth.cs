@@ -54,15 +54,13 @@ namespace GardenationApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1558970364129492",
+               appSecret: "9765b58aed3aa599465e7d80e3f6f0d8");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(
+                 clientId: "849750421679-cb8ounptu7oalf7aa1b4gk889h72ifb1.apps.googleusercontent.com",
+                 clientSecret: "5_DHGTWsFcP9KHcSvp0YfSLi");
         }
     }
 }
