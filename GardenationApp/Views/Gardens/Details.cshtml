@@ -22,7 +22,7 @@
 
 </div>
 <div class="row">
-    <h3>ToDo</h3>
+    <h3 class="text-center">ToDo</h3>
 
     @*for each prompt, show it as a to-do if it has not been completed*@
 
@@ -32,7 +32,7 @@
         {
             if (prompt.Complete == false)
             {
-                <div class='col-xs-12 col-md-8 col-md-offset-2 alert @*@(prompt.PromptListType.ColorClass)*@ alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
+                <div class='col-xs-12 col-md-8 col-md-offset-2 alert @(prompt.PromptListType.ColorClass) alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
                     <button class="prompt-info" aria-label="More Information" onclick=""><i class=" glyphicon glyphicon-align-left glyphicon-info-sign"></i></button>
 
                     @*Action command to change the prompt complete propery to true*@
@@ -43,7 +43,7 @@
                         <input id="id" name="id" type="hidden" value="@prompt.PromptListItemID" />@*pass prompt id to controller*@
                         <button class="prompt-checkbox"><span class="glyphicon glyphicon-unchecked"></span></button>
                     }
-                    <span class='@*@(prompt.PromptListType.IconClass)*@' aria-hidden='true'></span><span class="text-center prompt-message">@(prompt.Message) </span>
+                    <span class='@(prompt.PromptListType.IconClass)' aria-hidden='true'></span><span class="text-center prompt-message">@(prompt.Message) </span>
                 </div>
             }
         }
@@ -54,17 +54,17 @@
 <hr />
 
 <div class="row">
-    <h3>Dunzo</h3>
+    <h3 class="text-center">Dunzo</h3>
     @foreach (var prompt in Model.PromptListItems)
     {
         if(prompt != null)
         {
             if (prompt.Complete == true)
             {
-            <div class='col-xs-12 col-md-8 col-md-offset-2 alert @*@(prompt.PromptListType.ColorClass)*@ alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
+            <div class='col-xs-12 col-md-8 col-md-offset-2 alert @(prompt.PromptListType.ColorClass) alert-dismissible fade in @(prompt.VegetableReference)' role='alert'>
                 <button class="prompt-info" aria-label="More Information" onclick=""><span class=" glyphicon glyphicon-align-left glyphicon-info-sign"></span></button>
                 <button class=" prompt-checkbox"><span class="glyphicon glyphicon-check"></span></button>
-                <span class='@*@(prompt.PromptListType.IconClass)*@' aria-hidden='true'></span><strike><span class="text-center prompt-message">@(prompt.Message) </span></strike>
+                <span class='@(prompt.PromptListType.IconClass)' aria-hidden='true'></span><strike><span class="text-center prompt-message">@(prompt.Message) </span></strike>
             </div>
             }
         }

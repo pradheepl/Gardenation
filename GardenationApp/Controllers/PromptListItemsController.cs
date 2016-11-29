@@ -62,6 +62,8 @@ namespace GardenationApp.Controllers
 
             thisPrompt.Complete = true;
             Vegetable thisVeg = db.Vegetables.Find(Int32.Parse(thisPrompt.VegetableReference));
+
+
             thisVeg.WaterCountdown = 0;
             thisVeg.SowDate = DateTime.Now;
 

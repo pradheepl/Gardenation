@@ -145,6 +145,8 @@ textarea {
 /*Format Alerts*/
 .alert{
     text-align:center;
+    border:.3em solid #654321;
+    border-radius: 0;
 }
 
 .prompt-info{
@@ -165,6 +167,37 @@ textarea {
     position:absolute;
     top:20%;
     right:1em;
+}
+
+.navbar-custom .navbar-brand{
+    font-size: 1.7em;
+}
+
+h2{
+    margin:0 .3em 0 0;
+    font-size:1.5em;
+}
+
+h3{
+    font-size:1.5em;
+}
+@media(min-width:445px){
+    .navbar-custom .navbar-brand{
+    font-size: 4em;
+    }
+}
+
+@media(min-width:768px){
+
+    h2{
+    margin:0 .5em 0 0;
+    font-size:2.5em;
+    }
+
+    h3{
+    font-size:2.2em;
+    }
+
 }
 
 
