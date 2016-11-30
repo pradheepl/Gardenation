@@ -6,10 +6,6 @@
 
 
 <h2>Garden: @Html.DisplayFor(model => model.Name)</h2>
-<span>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GardenID }, new { @class = "btn btn-default" })    
-    @Html.ActionLink("Back to List", "Index", new { id = Model.GardenID }, new { @class = "btn btn-default" })
-</span>
 
 <div class="row garden@(Model.SqFeet)">
 
@@ -21,6 +17,11 @@
             }
 
 </div>
+<span>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GardenID }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Back to List", "Index", new { id = Model.GardenID }, new { @class = "btn btn-default" })
+</span>
+
 <div class="row">
     <h3 class="text-center">ToDo</h3>
 

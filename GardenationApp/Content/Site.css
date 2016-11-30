@@ -28,6 +28,61 @@ textarea {
     body{
         margin-top:5%;
     }
+
+/*Nav-bar customization*/
+.navbar-custom .navbar-brand{
+    font-size: 1.7em;
+}
+
+h2{
+    margin:0 .3em 0 0;
+    font-size:1.5em;
+}
+
+h3{
+    font-size:1.5em;
+}
+@media(min-width:445px){
+    .navbar-custom .navbar-brand{
+    font-size: 4em;
+    }
+}
+
+@media(min-width:768px){
+
+    h2{
+    margin:0 .5em 0 0;
+    font-size:2.5em;
+    }
+
+    h3{
+    font-size:2.2em;
+    }
+
+}
+
+
+/*GARDENS/INDEX customization*/
+
+.full-width-btn{
+    margin-bottom:4em;
+    width:100%;
+}
+    /*change the garden list to display nicer*/
+.garden-list {
+    margin: auto 0;
+    list-style-type: none;
+    font-family:'Love Ya Like A Sister', cursive;
+    font-size:1.2em;
+    font-weight:bold;
+}
+
+.garden-title{
+    font-family:'Love Ya Like A Sister', cursive;
+    text-align:center;
+}
+
+/*GARDENS/DETAILS/id customization*/
     /*Keep the garden in the middle of the screen and create a border to wrap all the sqft divs*/
 
     .garden4 {
@@ -134,15 +189,8 @@ textarea {
         overflow: hidden;
     }
 
-/*change the garden list to display nicer*/
-.garden-list {
-    margin-left: -7%;
-    margin-top: 0;
-    margin-bottom: 5%;
-    list-style-type: none;
-}
 
-/*Format Alerts*/
+    /*Format Alerts*/
 .alert{
     text-align:center;
     border:.3em solid #654321;
@@ -169,36 +217,13 @@ textarea {
     right:1em;
 }
 
-.navbar-custom .navbar-brand{
-    font-size: 1.7em;
-}
+    /*Change the size of borders on gardens on the Gardens/Index page since they are small*/
 
-h2{
-    margin:0 .3em 0 0;
-    font-size:1.5em;
-}
-
-h3{
-    font-size:1.5em;
-}
-@media(min-width:445px){
-    .navbar-custom .navbar-brand{
-    font-size: 4em;
-    }
-}
-
-@media(min-width:768px){
-
-    h2{
-    margin:0 .5em 0 0;
-    font-size:2.5em;
-    }
-
-    h3{
-    font-size:2.2em;
-    }
+.small-borders{
+    border: .3em solid tan;
+    max-width: 80%
 
 }
-
-
-
+.small-borders > .sqft4, .small-borders .sqft6{
+    border: .3em solid tan;
+}
