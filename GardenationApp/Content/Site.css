@@ -230,19 +230,19 @@ h3{
 }
 
 .container#tutorial{
-    position: relative;
+    position: initial;
     padding-bottom: 56.25%;
     padding-top: 35px;
-    height: 0;
     overflow: hidden;
+    
+
 }
 
 .container#tutorial iframe{
-    position: absolute;
-    top:0;
+    position:absolute;
+    top:12em;
     left: 0;
     width: 100%;
-    height: 100%;
 }
 
 
