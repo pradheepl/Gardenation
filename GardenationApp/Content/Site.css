@@ -1,6 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url('../Images/background-grass-2.png')no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -166,6 +169,27 @@ textarea {
     top:20%;
     right:1em;
 }
+.img-responsive#vegetablerow{
+    min-width: 100%;
+}
+
+.container#tutorial{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.container#tutorial iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 
 
 

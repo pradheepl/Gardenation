@@ -266,12 +266,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background-grass-2.png" />
     <Content Include="Images\CarrotIcon.png" />
     <Content Include="Images\fresh_vegetable_row.jpg" />
     <Content Include="Images\GardenSoil.jpg" />
     <Content Include="Images\LettuceIcon.png" />
     <Content Include="Images\OnionIcon.png" />
     <Content Include="Images\TomatoIcon.png" />
+    <Content Include="Images\vegetablerow.png" />
     <Content Include="Models\Gardenationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Gardenationdb.edmx</DependentUpon>
@@ -311,22 +313,17 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\GardenScript.js" />
-<<<<<<< HEAD
     <Content Include="Scripts\grayscale.es5.js">
       <DependentUpon>grayscale.js</DependentUpon>
     </Content>
     <Content Include="Scripts\grayscale.es5.min.js">
       <DependentUpon>grayscale.es5.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-=======
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
->>>>>>> Registration
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -407,7 +404,6 @@
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\PromptListItems\Create.cshtml" />
     <Content Include="Views\PromptListItems\Delete.cshtml" />
     <Content Include="Views\PromptListItems\Details.cshtml" />
@@ -418,11 +414,9 @@
     <Content Include="Views\Vegetables\Details.cshtml" />
     <Content Include="Views\Vegetables\Edit.cshtml" />
     <Content Include="Views\Vegetables\Index.cshtml" />
-=======
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\GardenLocation.cshtml" />
->>>>>>> Registration
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
