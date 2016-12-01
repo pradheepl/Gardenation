@@ -123,12 +123,15 @@ a:focus {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  margin-top: 0;
 }
 .intro .intro-body {
   vertical-align: middle;
 }
 .intro .intro-body .brand-heading {
-  font-size: 70px;
+  margin-top: 0em;
+  margin-bottom: .3em;
+  font-size: 4em;
   font-family: 'Love Ya Like A Sister', cursive;
 }
 .intro .intro-body img {

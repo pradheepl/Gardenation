@@ -5,24 +5,47 @@
 }
 
 <h2>
-    @Html.ActionLink("Create New Garden", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create New Garden", "Create", null, new { @class = "btn btn-default full-width-btn" })
 </h2>
 
 <div class="row">
     @*For each garden in the gardens model, show the name as a link to details with a list of information underneath*@
         @foreach (var item in Model)
         {
-            <div class=" col-xs-12 col-md-6">
-                <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)"><h2>@Html.DisplayFor(modelItem => item.Name)</h2></a>
+            
+            <div class=" col-xs-12 col-md-6 col-lg-4">
+                <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)">
+                    @if (item.SqFeet == 4)
+                {
+                        <div class="row garden4 small-borders">
+                            @foreach (var veg in item.Vegetables)
+                            {
+                                <div class="col-xs-6 bg-danger sqft4">
+                                    <span class="@(veg.VegetableType.Name)"></span>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if (item.SqFeet == 6)
+                {
+                        <div class="row garden6 small-borders">
+                            @foreach (var veg in item.Vegetables)
+                            {
+                                <div class="col-xs-4 bg-danger sqft6">
+                                    <span class="@(veg.VegetableType.Name)"></span>
+                                </div>
+                            }
+
+                        </div>
+                    }
+                </a>
+
+                <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)"><h2 class="garden-title">Visit "@(Html.DisplayFor(modelItem => item.Name))"</h2></a>
                 <ul class="garden-list">
                     <li>Size: @Html.DisplayFor(modelItem => item.SqFeet)Sq/ft</li>
-                    <li>Created: @Html.DisplayFor(modelItem => item.CreatedDate)</li>
-                    <li>Last Visit: @Html.DisplayFor(modelItem => item.LastVisitedDate)</li>
-                    <li>City: @Html.DisplayFor(modelItem => item.City.Name)</li>
-                    <li>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.GardenID }, new { @class = "btn btn-default" })
-                    </li>
+                    <li>Tasks: @Html.DisplayFor(modelItem => item.PromptListItems.Count)</li>
                 </ul>
+                <div>@Html.ActionLink("Delete", "Delete", new { id = item.GardenID }, new { @class = "btn btn-default full-width-btn" })</div>
             </div>
         }
 </div>
