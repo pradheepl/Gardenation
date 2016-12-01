@@ -6,10 +6,10 @@
 
 <h2>Create Your Garden</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         <div class="form-group">
             <span class="col-md-2">Choose your Size</span>
             <div class="col-md-10">
-                @Html.DropDownList("Sqft", null, htmlAttributes: new { @class = "form-control"})
+                @Html.DropDownList("Sqft", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
         <span class="col-xs-12">Choose your Veggies</span>
@@ -80,7 +80,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create Garden!" class="btn btn-default" />
+                <input type="submit" value="Create Garden!" class="btn btn-default" />@Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    
 </div>
 
 @section Scripts {

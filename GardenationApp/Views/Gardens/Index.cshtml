@@ -43,8 +43,7 @@
                 <a href="~/Gardens/Details/@Html.DisplayFor(modelItem => item.GardenID)"><h2 class="garden-title">Visit "@(Html.DisplayFor(modelItem => item.Name))"</h2></a>
                 <ul class="garden-list">
                     <li>Size: @Html.DisplayFor(modelItem => item.SqFeet)Sq/ft</li>
-                    <li>Created: @Html.DisplayFor(modelItem => item.CreatedDate)</li>
-                    <li>City: @Html.DisplayFor(modelItem => item.City.Name)</li>
+                    <li>Tasks: @Html.DisplayFor(modelItem => item.PromptListItems.Count)</li>
                 </ul>
                 <div>@Html.ActionLink("Delete", "Delete", new { id = item.GardenID }, new { @class = "btn btn-default full-width-btn" })</div>
             </div>

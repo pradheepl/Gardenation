@@ -3,6 +3,7 @@
     padding-bottom: 20px;
 }
 
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -68,6 +69,11 @@ h3{
     margin-bottom:4em;
     width:100%;
 }
+.full-width-btn-no-marg{
+    width:100%;
+}
+
+
     /*change the garden list to display nicer*/
 .garden-list {
     margin: auto 0;
@@ -217,6 +223,9 @@ h3{
     right:1em;
 }
 
+.prompt-message {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
     /*Change the size of borders on gardens on the Gardens/Index page since they are small*/
 
 .small-borders{
@@ -226,4 +235,21 @@ h3{
 }
 .small-borders > .sqft4, .small-borders .sqft6{
     border: .3em solid tan;
+}
+
+/*Forms*/
+.form-control{
+    border: .2em solid #654321;
+    border-radius:0em;
+    color:#654321;
+}
+.form-control:focus{
+    border-color: #8fdd2c;
+}
+
+/*Button*/
+.button-default:hover{
+    background-color:#8fdd2c;
+    color:#654321;
+    border-color:#654321;
 }
