@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: url('../Images/background-grass-2.png')no-repeat center center fixed;
+    background: url('../Images/background-grass-1.png')no-repeat center center fixed;
     background-size: cover;
     position: absolute;
 }
@@ -69,7 +69,7 @@ h3{
 /*GARDENS/INDEX customization*/
 
 .full-width-btn{
-    margin-bottom:4em;
+    margin-bottom:3em;
     width:100%;
 }
 .full-width-btn-no-marg{
@@ -243,6 +243,7 @@ h3{
     top:12em;
     left: 0;
     width: 100%;
+    height:80%;
 }
 
 
@@ -252,14 +253,15 @@ h3{
 }
     /*Change the size of borders on gardens on the Gardens/Index page since they are small*/
 
-.small-borders{
+.small-borders4{
     border: .3em solid tan;
-    max-width: 80%
+    max-width:55%;
+}
+.small-borders6{
+    border: .3em solid tan;
+    max-width:80%;
+}
 
-}
-.small-borders > .sqft4, .small-borders .sqft6{
-    border: .3em solid tan;
-}
 
 /*Forms*/
 .form-control{
