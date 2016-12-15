@@ -37,7 +37,7 @@ namespace GardenationApp.Controllers
                 return HttpNotFound();
             }
             
-            //Create water prompts for each vegetable that is not
+            //Create water prompts for each vegetable that needs it
             foreach(var veg in garden.Vegetables)
             {
                 if (veg.WaterCountdown <= 0 && veg.WaterReminderActive == false)
@@ -174,7 +174,7 @@ namespace GardenationApp.Controllers
                     newSeedPrompt.GardenID = garden.GardenID;
                     //complete false
                     newSeedPrompt.Complete = false;
-                    newSeedPrompt.PromptListTypeID = 4; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
+                    newSeedPrompt.PromptListTypeID = 2; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
                     //find the name of the vegetable type based on ID
                     VegetableType vegType = new VegetableType();
                     foreach (var type in db.VegetableTypes)
