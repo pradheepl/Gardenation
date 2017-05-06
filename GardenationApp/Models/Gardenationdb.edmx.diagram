@@ -8,14 +8,22 @@
         <EntityTypeShape EntityType="GardenationDbModel.City" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.Garden" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.PromptListItem" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardenationDbModel.PromptListType" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.Vegetable" Width="1.5" PointX="7.625" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GardenationDbModel.VegetableType" Width="1.5" PointX="7.625" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="GardenationDbModel.FK_Garden_City" ManuallyRouted="false" />
         <AssociationConnector Association="GardenationDbModel.FK_PromptListItem_Garden" ManuallyRouted="false" />
         <AssociationConnector Association="GardenationDbModel.FK_Vegetable_Garden" ManuallyRouted="false" />
-        <AssociationConnector Association="GardenationDbModel.FK_PromptListItem_PromptListType" ManuallyRouted="false" />
         <AssociationConnector Association="GardenationDbModel.FK_Vegetable_VegetableType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GardenationDbModel.Zone" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="GardenationDbModel.FK_City_Zone" />
+        <EntityTypeShape EntityType="GardenationDbModel.C__MigrationHistory" Width="1.5" PointX="3.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GardenationDbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="GardenationDbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="GardenationDbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="GardenationDbModel.AspNetUser" Width="1.5" PointX="3" PointY="10.375" />
+        <AssociationConnector Association="GardenationDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="GardenationDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="GardenationDbModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

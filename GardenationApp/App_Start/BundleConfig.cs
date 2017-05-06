@@ -23,7 +23,8 @@ namespace GardenationApp
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/grayscale.es5.min.js",
-                      "~/Scripts/GardenScript.js"));
+                      "~/Scripts/GardenScript.js",
+                      "~/Scripts/knockout-3.4.0.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

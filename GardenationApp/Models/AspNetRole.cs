@@ -12,20 +12,18 @@ namespace GardenationApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PromptListType
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PromptListType()
+        public AspNetRole()
         {
-            this.PromptListItems = new HashSet<PromptListItem>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int PromptListTypeID { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public string ColorClass { get; set; }
-        public string IconClass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PromptListItem> PromptListItems { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

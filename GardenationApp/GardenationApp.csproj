@@ -204,14 +204,28 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PromptListItemsController.cs" />
-    <Compile Include="Controllers\PromptListTypesController.cs" />
     <Compile Include="Controllers\VegetablesController.cs" />
-    <Compile Include="Controllers\VegetableTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GardenHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\City.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Garden.cs">
@@ -237,13 +251,13 @@
     <Compile Include="Models\PromptListItem.cs">
       <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PromptListType.cs">
-      <DependentUpon>Gardenationdb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Vegetable.cs">
       <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VegetableType.cs">
+      <DependentUpon>Gardenationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zone.cs">
       <DependentUpon>Gardenationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,6 +345,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -391,16 +407,6 @@
     <Content Include="Views\Gardens\Edit.cshtml" />
     <Content Include="Views\Gardens\Index.cshtml" />
     <Content Include="Views\Home\Assembly.cshtml" />
-    <Content Include="Views\VegetableTypes\Create.cshtml" />
-    <Content Include="Views\VegetableTypes\Delete.cshtml" />
-    <Content Include="Views\VegetableTypes\Details.cshtml" />
-    <Content Include="Views\VegetableTypes\Edit.cshtml" />
-    <Content Include="Views\VegetableTypes\Index.cshtml" />
-    <Content Include="Views\PromptListTypes\Create.cshtml" />
-    <Content Include="Views\PromptListTypes\Delete.cshtml" />
-    <Content Include="Views\PromptListTypes\Details.cshtml" />
-    <Content Include="Views\PromptListTypes\Edit.cshtml" />
-    <Content Include="Views\PromptListTypes\Index.cshtml" />
     <Content Include="Views\Cities\Create.cshtml" />
     <Content Include="Views\Cities\Delete.cshtml" />
     <Content Include="Views\Cities\Details.cshtml" />
@@ -411,11 +417,6 @@
     <Content Include="Views\PromptListItems\Details.cshtml" />
     <Content Include="Views\PromptListItems\Edit.cshtml" />
     <Content Include="Views\PromptListItems\Index.cshtml" />
-    <Content Include="Views\Vegetables\Create.cshtml" />
-    <Content Include="Views\Vegetables\Delete.cshtml" />
-    <Content Include="Views\Vegetables\Details.cshtml" />
-    <Content Include="Views\Vegetables\Edit.cshtml" />
-    <Content Include="Views\Vegetables\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\GardenLocation.cshtml" />

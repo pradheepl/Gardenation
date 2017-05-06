@@ -5,6 +5,67 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GardenationDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -12,10 +73,8 @@
           <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SpringFrostDate" Type="datetime" />
-          <Property Name="FallFrostDate" Type="datetime" />
-          <Property Name="WeatherType" Type="nvarchar" MaxLength="50" />
           <Property Name="SpecialMessage" Type="nvarchar" MaxLength="500" />
+          <Property Name="ZoneID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Garden">
           <Key>
@@ -27,6 +86,7 @@
           <Property Name="LastVisitedDate" Type="date" />
           <Property Name="SqFeet" Type="int" />
           <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="VegetableSort" Type="nvarchar" MaxLength="3000" />
         </EntityType>
         <EntityType Name="PromptListItem">
           <Key>
@@ -35,19 +95,9 @@
           <Property Name="PromptListItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TriggerDate" Type="date" Nullable="false" />
           <Property Name="GardenID" Type="int" Nullable="false" />
-          <Property Name="PromptListTypeID" Type="int" Nullable="false" />
           <Property Name="VegetableReference" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar" MaxLength="300" />
           <Property Name="Complete" Type="bit" />
-        </EntityType>
-        <EntityType Name="PromptListType">
-          <Key>
-            <PropertyRef Name="PromptListTypeID" />
-          </Key>
-          <Property Name="PromptListTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ColorClass" Type="nvarchar" MaxLength="50" />
-          <Property Name="IconClass" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Vegetable">
           <Key>
@@ -60,7 +110,9 @@
           <Property Name="GardenID" Type="int" Nullable="false" />
           <Property Name="VegetableTypeID" Type="int" Nullable="false" />
           <Property Name="HarvestSuggestionDate" Type="datetime" />
-          <Property Name="WaterReminderActive" Type="bit" />
+          <Property Name="WaterReminderActive" Type="bit" Nullable="false" />
+          <Property Name="SeedRedminderActive" Type="bit" Nullable="false" />
+          <Property Name="HarvestReminderActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VegetableType">
           <Key>
@@ -73,8 +125,85 @@
           <Property Name="SowDateMod" Type="int" />
           <Property Name="HarvestDateMod" Type="int" />
           <Property Name="ContinualHarvest" Type="bit" />
-          <Property Name="HarvestInstructions" Type="nvarchar" MaxLength="500" />
+          <Property Name="HarvestInstructions" Type="nvarchar" MaxLength="2000" />
         </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ZoneID" />
+          </Key>
+          <Property Name="ZoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpringFrost" Type="datetime" Nullable="false" />
+          <Property Name="FallFrost" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <Association Name="FK_City_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ZoneID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Garden_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="Garden" Type="Self.Garden" Multiplicity="*" />
@@ -96,18 +225,6 @@
             </Principal>
             <Dependent Role="PromptListItem">
               <PropertyRef Name="GardenID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PromptListItem_PromptListType">
-          <End Role="PromptListType" Type="Self.PromptListType" Multiplicity="1" />
-          <End Role="PromptListItem" Type="Self.PromptListItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PromptListType">
-              <PropertyRef Name="PromptListTypeID" />
-            </Principal>
-            <Dependent Role="PromptListItem">
-              <PropertyRef Name="PromptListTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -136,22 +253,44 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GardenationDbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Garden" EntityType="Self.Garden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PromptListItem" EntityType="Self.PromptListItem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PromptListType" EntityType="Self.PromptListType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vegetable" EntityType="Self.Vegetable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VegetableType" EntityType="Self.VegetableType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_City_Zone" Association="Self.FK_City_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_Garden_City" Association="Self.FK_Garden_City">
             <End Role="City" EntitySet="City" />
             <End Role="Garden" EntitySet="Garden" />
           </AssociationSet>
           <AssociationSet Name="FK_PromptListItem_Garden" Association="Self.FK_PromptListItem_Garden">
             <End Role="Garden" EntitySet="Garden" />
-            <End Role="PromptListItem" EntitySet="PromptListItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PromptListItem_PromptListType" Association="Self.FK_PromptListItem_PromptListType">
-            <End Role="PromptListType" EntitySet="PromptListType" />
             <End Role="PromptListItem" EntitySet="PromptListItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Vegetable_Garden" Association="Self.FK_Vegetable_Garden">
@@ -174,11 +313,9 @@
           <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="WeatherType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SpecialMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gardens" Relationship="Self.FK_Garden_City" FromRole="City" ToRole="Garden" />
-          <Property Name="SpringFrostDate" Type="DateTime" Precision="3" />
-          <Property Name="FallFrostDate" Type="DateTime" Precision="3" />
+          <Property Name="ZoneID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zone" Relationship="GardenationDbModel.FK_City_Zone" FromRole="City" ToRole="Zone" />
         </EntityType>
         <EntityType Name="Garden">
           <Key>
@@ -193,6 +330,7 @@
           <NavigationProperty Name="City" Relationship="Self.FK_Garden_City" FromRole="Garden" ToRole="City" />
           <NavigationProperty Name="PromptListItems" Relationship="Self.FK_PromptListItem_Garden" FromRole="Garden" ToRole="PromptListItem" />
           <NavigationProperty Name="Vegetables" Relationship="Self.FK_Vegetable_Garden" FromRole="Garden" ToRole="Vegetable" />
+          <Property Name="VegetableSort" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PromptListItem">
           <Key>
@@ -201,22 +339,10 @@
           <Property Name="PromptListItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TriggerDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GardenID" Type="Int32" Nullable="false" />
-          <Property Name="PromptListTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Garden" Relationship="Self.FK_PromptListItem_Garden" FromRole="PromptListItem" ToRole="Garden" />
-          <NavigationProperty Name="PromptListType" Relationship="Self.FK_PromptListItem_PromptListType" FromRole="PromptListItem" ToRole="PromptListType" />
           <Property Name="VegetableReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Complete" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="PromptListType">
-          <Key>
-            <PropertyRef Name="PromptListTypeID" />
-          </Key>
-          <Property Name="PromptListTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ColorClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IconClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PromptListItems" Relationship="Self.FK_PromptListItem_PromptListType" FromRole="PromptListType" ToRole="PromptListItem" />
         </EntityType>
         <EntityType Name="Vegetable">
           <Key>
@@ -231,7 +357,9 @@
           <NavigationProperty Name="VegetableType" Relationship="Self.FK_Vegetable_VegetableType" FromRole="Vegetable" ToRole="VegetableType" />
           <Property Name="HarvestedDate" Type="DateTime" Precision="3" />
           <Property Name="HarvestSuggestionDate" Type="DateTime" Precision="3" />
-          <Property Name="WaterReminderActive" Type="Boolean" />
+          <Property Name="WaterReminderActive" Type="Boolean" Nullable="false" />
+          <Property Name="SeedRedminderActive" Type="Boolean" Nullable="false" />
+          <Property Name="HarvestReminderActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="VegetableType">
           <Key>
@@ -245,7 +373,7 @@
           <NavigationProperty Name="Vegetables" Relationship="Self.FK_Vegetable_VegetableType" FromRole="VegetableType" ToRole="Vegetable" />
           <Property Name="SowDateMod" Type="Int32" />
           <Property Name="ContinualHarvest" Type="Boolean" />
-          <Property Name="HarvestInstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HarvestInstructions" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Garden_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -283,18 +411,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PromptListItem_PromptListType">
-          <End Role="PromptListType" Type="Self.PromptListType" Multiplicity="1" />
-          <End Role="PromptListItem" Type="Self.PromptListItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PromptListType">
-              <PropertyRef Name="PromptListTypeID" />
-            </Principal>
-            <Dependent Role="PromptListItem">
-              <PropertyRef Name="PromptListTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vegetable_VegetableType">
           <End Role="VegetableType" Type="Self.VegetableType" Multiplicity="1" />
           <End Role="Vegetable" Type="Self.Vegetable" Multiplicity="*" />
@@ -311,7 +427,6 @@
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Gardens" EntityType="Self.Garden" />
           <EntitySet Name="PromptListItems" EntityType="Self.PromptListItem" />
-          <EntitySet Name="PromptListTypes" EntityType="Self.PromptListType" />
           <EntitySet Name="Vegetables" EntityType="Self.Vegetable" />
           <EntitySet Name="VegetableTypes" EntityType="Self.VegetableType" />
           <AssociationSet Name="FK_Garden_City" Association="Self.FK_Garden_City">
@@ -326,15 +441,146 @@
             <End Role="Garden" EntitySet="Gardens" />
             <End Role="Vegetable" EntitySet="Vegetables" />
           </AssociationSet>
-          <AssociationSet Name="FK_PromptListItem_PromptListType" Association="Self.FK_PromptListItem_PromptListType">
-            <End Role="PromptListType" EntitySet="PromptListTypes" />
-            <End Role="PromptListItem" EntitySet="PromptListItems" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vegetable_VegetableType" Association="Self.FK_Vegetable_VegetableType">
             <End Role="VegetableType" EntitySet="VegetableTypes" />
             <End Role="Vegetable" EntitySet="Vegetables" />
           </AssociationSet>
+          <EntitySet Name="Zones" EntityType="GardenationDbModel.Zone" />
+          <AssociationSet Name="FK_City_Zone" Association="GardenationDbModel.FK_City_Zone">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="GardenationDbModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="GardenationDbModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="GardenationDbModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="GardenationDbModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="GardenationDbModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="GardenationDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="GardenationDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="GardenationDbModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ZoneID" />
+          </Key>
+          <Property Name="ZoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpringFrost" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FallFrost" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cities" Relationship="GardenationDbModel.FK_City_Zone" FromRole="Zone" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_City_Zone">
+          <End Type="GardenationDbModel.Zone" Role="Zone" Multiplicity="1" />
+          <End Type="GardenationDbModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ZoneID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="GardenationDbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="GardenationDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="GardenationDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="GardenationDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="GardenationDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="GardenationDbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="GardenationDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GardenationDbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="GardenationDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GardenationDbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="GardenationDbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="GardenationDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -344,19 +590,17 @@
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="GardenationDbModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="FallFrostDate" ColumnName="FallFrostDate" />
-                <ScalarProperty Name="SpringFrostDate" ColumnName="SpringFrostDate" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="WeatherType" ColumnName="WeatherType" />
-                <ScalarProperty Name="SpecialMessage" ColumnName="SpecialMessage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gardens">
             <EntityTypeMapping TypeName="GardenationDbModel.Garden">
               <MappingFragment StoreEntitySet="Garden">
+                <ScalarProperty Name="VegetableSort" ColumnName="VegetableSort" />
                 <ScalarProperty Name="GardenID" ColumnName="GardenID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -375,23 +619,14 @@
                 <ScalarProperty Name="PromptListItemID" ColumnName="PromptListItemID" />
                 <ScalarProperty Name="TriggerDate" ColumnName="TriggerDate" />
                 <ScalarProperty Name="GardenID" ColumnName="GardenID" />
-                <ScalarProperty Name="PromptListTypeID" ColumnName="PromptListTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PromptListTypes">
-            <EntityTypeMapping TypeName="GardenationDbModel.PromptListType">
-              <MappingFragment StoreEntitySet="PromptListType">
-                <ScalarProperty Name="PromptListTypeID" ColumnName="PromptListTypeID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ColorClass" ColumnName="ColorClass" />
-                <ScalarProperty Name="IconClass" ColumnName="IconClass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vegetables">
             <EntityTypeMapping TypeName="GardenationDbModel.Vegetable">
               <MappingFragment StoreEntitySet="Vegetable">
+                <ScalarProperty Name="HarvestReminderActive" ColumnName="HarvestReminderActive" />
+                <ScalarProperty Name="SeedRedminderActive" ColumnName="SeedRedminderActive" />
                 <ScalarProperty Name="WaterReminderActive" ColumnName="WaterReminderActive" />
                 <ScalarProperty Name="HarvestSuggestionDate" ColumnName="HarvestSuggestionDate" />
                 <ScalarProperty Name="HarvestedDate" ColumnName="HarvestedDate" />
@@ -417,6 +652,79 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="GardenationDbModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FallFrost" ColumnName="FallFrost" />
+                <ScalarProperty Name="SpringFrost" ColumnName="SpringFrost" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="GardenationDbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="GardenationDbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="GardenationDbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="GardenationDbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="GardenationDbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="GardenationDbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

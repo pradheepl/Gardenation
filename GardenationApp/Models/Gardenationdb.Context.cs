@@ -28,8 +28,13 @@ namespace GardenationApp.Models
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Garden> Gardens { get; set; }
         public virtual DbSet<PromptListItem> PromptListItems { get; set; }
-        public virtual DbSet<PromptListType> PromptListTypes { get; set; }
         public virtual DbSet<Vegetable> Vegetables { get; set; }
         public virtual DbSet<VegetableType> VegetableTypes { get; set; }
+        public virtual DbSet<Zone> Zones { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

@@ -21,7 +21,9 @@ namespace GardenationApp.Models
         public int VegetableTypeID { get; set; }
         public Nullable<System.DateTime> HarvestedDate { get; set; }
         public Nullable<System.DateTime> HarvestSuggestionDate { get; set; }
-        public Nullable<bool> WaterReminderActive { get; set; }
+        public bool WaterReminderActive { get; set; }
+        public bool SeedRedminderActive { get; set; }
+        public bool HarvestReminderActive { get; set; }
     
         public virtual Garden Garden { get; set; }
         public virtual VegetableType VegetableType { get; set; }

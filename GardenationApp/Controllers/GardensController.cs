@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using GardenationApp.Models;
 using GardenationApp.ViewModels;
+using GardenationApp.Helpers;
 
 namespace GardenationApp.Controllers
 {
@@ -36,47 +37,11 @@ namespace GardenationApp.Controllers
             {
                 return HttpNotFound();
             }
-            
-            //Create water prompts for each vegetable that needs it
-            foreach(var veg in garden.Vegetables)
-            {
-                if (veg.WaterCountdown <= 0 && veg.WaterReminderActive == false)
-                {
-                    veg.WaterReminderActive = true;
 
-                    PromptListItem newWaterPrompt = new PromptListItem();
-                    newWaterPrompt.Complete = false;
-                    newWaterPrompt.GardenID = garden.GardenID;
-                    newWaterPrompt.Message = "Time to water your " + veg.VegetableType.Name;
-                    newWaterPrompt.PromptListTypeID = 1; //TODO: refactor this hard code to search for the "Water" type
-                    newWaterPrompt.TriggerDate = DateTime.Now;
-                    newWaterPrompt.VegetableReference = "" + veg.VegetableID;
-
-                    db.PromptListItems.Add(newWaterPrompt);
-                }
-            }
+            //Create plant, water, and harvest prompts for each vegetable that needs it
+            GardenHelpers.DailyCheck(garden);
 
             db.SaveChanges();
-
-            //Declare ViewBags outside of if statement scope
-            ViewBag.BootstrapColumnClass = "";
-            ViewBag.GardenClass = "";
-            ViewBag.SqftClass = "";
-
-            if (garden.SqFeet == 4)
-            {
-                ViewBag.BootstrapColumnClass = "col-xs-6";
-                ViewBag.GardenClass = "garden4";
-                ViewBag.SqftClass = "sqft4"; //TODO: don't need this - just use size of garden
-            }
-
-            if (garden.SqFeet == 6)
-            {
-                ViewBag.BootstrapColumnClass = "col-xs-4";
-                ViewBag.GardenClass = "garden6";
-                ViewBag.SqftClass = "sqft6";
-            }
-
 
             return View(garden);
         }
@@ -84,6 +49,7 @@ namespace GardenationApp.Controllers
         // GET: Gardens/Create
         public ActionResult Create()
         {
+            //TODO: Refactor create garden experience with Angular and delete this nonsense
             CreateGardenVM createGardenVM = new CreateGardenVM();
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name");
             ViewBag.VegetableTypeID1 = new SelectList(db.VegetableTypes, "VegetableTypeID", "Name");
@@ -111,95 +77,17 @@ namespace GardenationApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                Garden newGarden = new Garden();
 
-                //create a garden with no vegetables
-                Garden garden = new Garden();
-                garden.GardenID = createGardenVM.GardenID;
-                garden.Name = createGardenVM.Name;
-                garden.SqFeet = Int32.Parse(createGardenVM.Sqft); //VM Sqft is string because it receives from selectlist viewbag
-                garden.CreatedDate = DateTime.Now;
-                garden.CityID = createGardenVM.CityID;
-                db.Gardens.Add(garden);
+                //converts the viewmodel to a new garden with vegetables and prompts
+                GardenHelpers.GardenInit(newGarden, createGardenVM);
 
-                //create a list of the viewmodels vegetables that were passed
-                List<int> ViewModelVegetableIDs = new List<int>();
-
-                if (garden.SqFeet == 4) {
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
-                }
-                
-                if(garden.SqFeet == 6)
-                {
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID1);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID2);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID3);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID4);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID5);
-                    ViewModelVegetableIDs.Add(createGardenVM.VegetableTypeID6);
-                }
-
-                //Add vegetables to the list according to the size of the garden
-                List<Vegetable> NewVegetableList = new List<Vegetable>();
-                for(int j = 0; j < ViewModelVegetableIDs.Count; j++)
-                {
-                   var newVeg = new Vegetable();
-                    NewVegetableList.Add(newVeg);
-                }
-
-                //for each vegetable in the list of new vegetables, set their properies at add them to the database
-                int i = 0;
-                foreach (var veg in NewVegetableList)
-                {
-                    
-                    veg.VegetableTypeID = ViewModelVegetableIDs[i];
-                    veg.GardenID = createGardenVM.GardenID;
-                    veg.WaterReminderActive = false;
-                    veg.WaterCountdown = 365; //it will never go off until it is planted/given a SeedDate
-                    //Add the vegetable to the list
-                    db.Vegetables.Add(veg);
-                    i++;
-                }
-
-                db.SaveChanges();
-
-                foreach(var veg2 in garden.Vegetables)
-                {
-                    //add a seeding prompt for each vegetable in the database
-                    PromptListItem newSeedPrompt = new PromptListItem();
-                    newSeedPrompt.TriggerDate = DateTime.Now;
-                    //remember the garden
-                    newSeedPrompt.GardenID = garden.GardenID;
-                    //complete false
-                    newSeedPrompt.Complete = false;
-                    newSeedPrompt.PromptListTypeID = 2; //'Plant' type hardcoded based on Database  //TODO: refactor to find the ID
-                    //find the name of the vegetable type based on ID
-                    VegetableType vegType = new VegetableType();
-                    foreach (var type in db.VegetableTypes)
-                    {
-                        if (type.VegetableTypeID == veg2.VegetableTypeID)
-                        {
-                            vegType = type;
-                        }
-                    }
-                    newSeedPrompt.Message = " Time to plant your " + vegType.Name;
-                    newSeedPrompt.VegetableReference = "" + veg2.VegetableID;
-
-                    //add the prompt to the garden
-                    db.PromptListItems.Add(newSeedPrompt);
-
-                }
-
+                db.Gardens.Add(newGarden);
                 db.SaveChanges();
 
                 //show the details of created garden
-                return RedirectToAction("Details", "Gardens", new { id = garden.GardenID });
-                
+                return RedirectToAction("Details", "Gardens", new { id = newGarden.GardenID });
             }
-
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "Name", createGardenVM.CityID);
             return View();
         }
 
@@ -269,7 +157,7 @@ namespace GardenationApp.Controllers
                 db.Vegetables.Remove(veg);
             }
             //remove all prompt list items
-            foreach(var prompt in garden.PromptListItems.ToList())
+            foreach (var prompt in garden.PromptListItems.ToList())
             {
                 db.PromptListItems.Remove(prompt);
             }

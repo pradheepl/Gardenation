@@ -12,21 +12,20 @@ namespace GardenationApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class City
+    public partial class Zone
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public City()
+        public Zone()
         {
-            this.Gardens = new HashSet<Garden>();
+            this.Cities = new HashSet<City>();
         }
     
-        public int CityID { get; set; }
-        public string Name { get; set; }
-        public string State { get; set; }
         public int ZoneID { get; set; }
+        public System.DateTime SpringFrost { get; set; }
+        public System.DateTime FallFrost { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Garden> Gardens { get; set; }
-        public virtual Zone Zone { get; set; }
+        public virtual ICollection<City> Cities { get; set; }
     }
 }
