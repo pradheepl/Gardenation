@@ -12,15 +12,11 @@ namespace GardenationApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PromptListItem
+    public partial class C__MigrationHistory
     {
-        public int PromptListItemID { get; set; }
-        public System.DateTime TriggerDate { get; set; }
-        public int GardenID { get; set; }
-        public string VegetableReference { get; set; }
-        public string Message { get; set; }
-        public Nullable<bool> Complete { get; set; }
-    
-        public virtual Garden Garden { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

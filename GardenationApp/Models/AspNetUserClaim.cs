@@ -12,15 +12,13 @@ namespace GardenationApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PromptListItem
+    public partial class AspNetUserClaim
     {
-        public int PromptListItemID { get; set; }
-        public System.DateTime TriggerDate { get; set; }
-        public int GardenID { get; set; }
-        public string VegetableReference { get; set; }
-        public string Message { get; set; }
-        public Nullable<bool> Complete { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual Garden Garden { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

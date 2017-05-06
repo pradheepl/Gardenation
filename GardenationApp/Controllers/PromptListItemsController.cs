@@ -17,7 +17,7 @@ namespace GardenationApp.Controllers
         // GET: PromptListItems
         public ActionResult Index()
         {
-            var promptListItems = db.PromptListItems.Include(p => p.Garden).Include(p => p.PromptListType);
+            var promptListItems = db.PromptListItems.Include(p => p.Garden);
             return View(promptListItems.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace GardenationApp.Controllers
         public ActionResult Create()
         {
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name");
-            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name");
+            
             return View();
         }
 
@@ -88,7 +88,7 @@ namespace GardenationApp.Controllers
             }
 
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
-            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
+            
             return View(promptListItem);
         }
 
@@ -105,7 +105,7 @@ namespace GardenationApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
-            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
+            
             return View(promptListItem);
         }
 
@@ -123,7 +123,7 @@ namespace GardenationApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GardenID = new SelectList(db.Gardens, "GardenID", "Name", promptListItem.GardenID);
-            ViewBag.PromptListTypeID = new SelectList(db.PromptListTypes, "PromptListTypeID", "Name", promptListItem.PromptListTypeID);
+            
             return View(promptListItem);
         }
 
