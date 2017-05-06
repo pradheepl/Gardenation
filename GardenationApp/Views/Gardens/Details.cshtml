@@ -12,7 +12,10 @@
             @*Create a responsive square for each vegetable in the garden model*@
             @foreach (var v in Model.Vegetables)
             {
-                <div class="@(ViewBag.BootstrapColumnClass) bg-danger sqft@(Model.SqFeet) veg@(v.VegetableID)"><span class="@(v.VegetableType.Name)"></span>
+                
+                
+
+                <div class="col-md-@(Model.SqFeet == 4 ? 6 : 4) bg-danger sqft@(Model.SqFeet) veg@(v.VegetableID)"><span class="@(v.VegetableType.Name)"></span>
                    <!--create a warning if it needs watered-->
                 @{if (v.WaterCountdown <= 0 && v.WaterReminderActive == false)
                     {
